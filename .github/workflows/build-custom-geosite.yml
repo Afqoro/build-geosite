@@ -254,6 +254,80 @@ jobs:
           echo "=== sample mahavpn-oisd-big ==="
           sed -n '1,10p' data/mahavpn-oisd-big || true
 
+      - name: Debug broken include references
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          data_dir = Path("data")
+          existing = {p.name.lower() for p in data_dir.iterdir() if p.is_file()}
+
+          broken = []
+          for path in sorted(data_dir.iterdir()):
+              if not path.is_file():
+                  continue
+              for i, line in enumerate(path.read_text(encoding="utf-8", errors="ignore").splitlines(), 1):
+                  s = line.strip()
+                  if s.lower().startswith("include:"):
+                      target = s.split(":", 1)[1].strip().lower()
+                      if target and target not in existing:
+                         broken.append((path.name, i, target))
+
+          if broken:
+              print("=== broken include references ===")
+              for fname, lineno, target in broken:
+                  print(f"{fname}:{lineno} -> include:{target} (missing)")
+          else:
+              print("No broken include references found.")
+          PY
+
+      - name: Remove broken include references from custom files
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          data_dir = Path("data")
+          custom_sources = [Path("my-custom"), Path("generated-custom")]
+
+          existing = {p.name.lower() for p in data_dir.iterdir() if p.is_file()}
+
+          changed = False
+
+          for src in custom_sources:
+              if not src.exists():
+                  continue
+
+              for path in sorted(src.iterdir()):
+                  if not path.is_file():
+                      continue
+
+                  lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+                  new_lines = []
+                  removed = []
+
+                  for i, line in enumerate(lines, 1):
+                      s = line.strip()
+                      if s.lower().startswith("include:"):
+                          target = s.split(":", 1)[1].strip().lower()
+                          if target and target not in existing:
+                              removed.append((i, target, line))
+                              changed = True
+                              continue
+                      new_lines.append(line)
+
+                  if removed:
+                      print(f"[FIX] {path}")
+                      for i, target, line in removed:
+                          print(f"  remove line {i}: {line}  -> missing target '{target}'")
+                      path.write_text("\n".join(new_lines) + ("\n" if new_lines else ""), encoding="utf-8")
+
+                      # sinkronkan juga ke data
+                      target_path = data_dir / path.name
+                      target_path.write_text("\n".join(new_lines) + ("\n" if new_lines else ""), encoding="utf-8")
+          PY
+    
       - name: Preview suspicious wildcard lines
         shell: bash
         run: |
