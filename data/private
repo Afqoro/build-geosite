@@ -17,9 +17,11 @@ local
 # https://tools.ietf.org/html/rfc8375
 home.arpa
 
+# https://www.icann.org/en/public-comment/proceeding/proposed-top-level-domain-string-for-private-use-24-01-2024
+internal
+
 # References: https://www.iana.org/assignments/locally-served-dns-zones/locally-served-dns-zones.xhtml
 # https://www.rfc-editor.org/rfc/rfc6303.html
-0.in-addr.arpa
 2.0.192.in-addr.arpa
 10.in-addr.arpa
 16.172.in-addr.arpa
@@ -44,7 +46,6 @@ home.arpa
 168.192.in-addr.arpa
 254.169.in-addr.arpa
 255.255.255.255.in-addr.arpa
-0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
 8.b.d.0.1.0.0.2.ip6.arpa
 8.e.f.ip6.arpa
@@ -158,9 +159,6 @@ plex.direct
 localhost.sec.qq.com
 localhost.ptlogin2.qq.com
 
-# Steam Deck Game mode
-test.steampowered.com
-
 # Tenda router
 tendawifi.com
 
@@ -180,3 +178,12 @@ zte.home
 # Tailscale Magic DNS
 # Reference: https://tailscale.com/kb/1081/magicdns/#fully-qualified-domain-names-vs-machine-names
 ts.net
+
+# AdGuard "content script" domain
+# Reference: https://adguard.com/kb/general/https-filtering/local-adguard-com-domain/
+full:local.adguard.org
+
+# Kaspersky script injection domain
+# Reference: https://forum.kaspersky.com/topic/what-is-kaspersky-labscom-ffkisv2scrkaspersky-labscom-21484/
+# Reference: https://palant.info/2019/11/25/kaspersky-the-art-of-keeping-your-keys-under-the-door-mat/
+kis.v2.scr.kaspersky-labs.com

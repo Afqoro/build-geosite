@@ -4,11 +4,12 @@
 /domain-list-community
 /domain-list-community.exe
 
-# Generated dat file.
-dlc.dat
+# Generated dat files.
+/*.dat
 release/*.dat
 
 # Exported plaintext lists.
 /*.txt
+/*.yml
 
 tmp/

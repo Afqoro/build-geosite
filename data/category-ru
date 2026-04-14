@@ -1,20 +1,106 @@
 # Russian websites
+ru.com
+ru.net
 
-# Russian TLDs
-ru
-su
-xn--80adxhks
-xn--80asehdb
-xn--80aswg
-xn--c1avg
-xn--d1acj3b
-xn--p1acf
-xn--p1ai
-
+include:tld-ru
+include:category-ecommerce-ru
+include:category-entertainment-ru
 include:category-gov-ru
+include:category-medicine-ru
+include:category-retail-ru
+include:category-travel-ru
 
-include:mailru
-include:ok
-include:ozon
-include:vk
+# Russian companies
+include:carrotquest
+include:headhunter
+include:kaspersky
+include:mailru-group
+include:mindbox
+include:selectel
 include:yandex
+
+# Bank & Finance & Insurance & Securities
+include:category-bank-ru
+# Credit History Bureaus
+credistory.ru
+nbki.ru
+# Currency and stock exchanges
+moex.com   # Moscow Stock Exchange
+spvb.ru    # Saint-Petersburg Stock Exchange
+# Financial marketplace
+banki.ru
+finuslugi.ru
+# Investment
+sistema-capital.com
+# Mir payment system
+mironline.ru
+mirpayonline.ru
+# National Payment Card System
+nspk.ru
+# Tipping service
+netmonet.co
+tips.tips
+
+# Telecom operators
+beeline.ru
+dom.ru
+mts.ru
+mymts.ru
+rostelecom.ru
+rt.ru
+t2.ru
+tele2.ru
+
+## Megafon
+inplat.ru
+megafon.com
+megafon.ru
+megafonpro.ru
+mgfn.ru
+report-megafon.ru
+scartel.ru
+yota.ru
+yotagamer.ru
+
+### IDN ccTLD
+xn--80a9a4b.xn--p1ai # ёта.рф
+xn--80aj3b.xn--p1ai # ета.рф
+xn--80arpq.xn--p1ai # йота.рф
+
+# Other domains
+apptrackpets.com # Pet GPS tracker service (Yandex Cloud, reg.ru)
+gazfond-pn.ru    # Non-state pension fund GAZFOND pension savings
+litres.ru        # E-book and audiobook service
+meteoinfo.ru     # Hydrometeorological Center of Russia
+ngenix.net       # NGENIX is a Russian provider of acceleration and security services for public web resources
+pochta.ru        # Russian post
+qms.ru           # Russian internet speed testing service
+roistat.com @ads # Russian marketing company
+srv-hub.org      # Website buider
+t1.cloud         # Russian cloud storage provider
+taxsee.com       # Taxi for business (self-employed drivers)
+
+## COMSS.ONE "Computer Security Software Russia"
+comss.club
+comss.info
+comss.me
+comss.net
+comss.news
+comss.one
+comss.online
+comss.org
+comss.ru
+
+## Genotek
+eligens.cl
+eligens.com.br
+eligens.io
+genetic-technologies.am
+genotek.am
+genotek.health
+genotek.ru
+
+## Ideco, NGFW developer
+ideco.dev
+ideco.ru
+idecosoftware.ru

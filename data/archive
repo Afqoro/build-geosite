@@ -1,7 +1,2 @@
-include:4plebs
-
-archive-it.org
-archive.org
-archive.ph
-archive.today
-openlibrary.org
+# For compatibility only
+include:category-web-archive
