@@ -6,6 +6,9 @@
 
 # Generated dat file.
 dlc.dat
+release/*.dat
 
 # Exported plaintext lists.
 /*.txt
+
+tmp/
