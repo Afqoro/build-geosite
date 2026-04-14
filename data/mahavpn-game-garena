@@ -1,0 +1,39 @@
+include:garena
+# FreeFire
+keyword:freefire
+keyword:garena
+garena.com
+avatargarenanow-a.akamaihd.net
+cdngarenanow-a.akamaihd.net
+dlmobilegarena-a.akamaihd.net
+garenanow.com
+seagroup.com
+# > Garena (Support)
+full:sg.voice.gcloudcs.com
+full:vn.voice.gcloudcs.com
+full:sg.itopsdk.com
+full:itop.qq.com
+keyword:gcloudcs
+keyword:gcloudsdk
+keyword:nagcloudcs
+freefiremobile.com
+keyword:ffmax
+
+# > CoDM (com.garena.game.codm)
+codm.garena.com
+connect.garena.com
+msdk.garena.com
+gxx.garenanow.com
+full:cdn.wetest.qq.com
+full:hsg.tdm.qq.com
+keyword:codm
+# > Arena of Valor (com.garena.game.kgid)
+kg.garena.co.id
+midas.garena.co.id
+iegg.garena.com
+cros.garena.com
+kgid.garenanow.com
+live.qcloud.com
+full:cloud2.gsdk.proximabeta.com
+keyword:kgid
+keyword:aovtv
