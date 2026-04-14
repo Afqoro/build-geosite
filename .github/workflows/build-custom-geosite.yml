@@ -2,12 +2,6 @@ name: Build Custom Geosite
 
 on:
   workflow_dispatch:
-    inputs:
-      refresh_remote_lists:
-        description: "Fetch ulang list remote (oisd, adaway, phishing, dll)"
-        required: true
-        default: false
-        type: boolean
 
 jobs:
   build:
@@ -35,48 +29,202 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Prepare scripts
-        shell: bash
-        run: |
-          chmod +x add_custom.sh line.sh
-
-          # Patch path absolut VPS -> path runner GitHub Actions
-          sed -i "s|^BASE_DIR=.*|BASE_DIR=\"${GITHUB_WORKSPACE}\"|" add_custom.sh
-          sed -i "s|^directory=.*|directory=\"${GITHUB_WORKSPACE}/my-custom/\"|" line.sh
-
-          echo "=== add_custom.sh (patched) ==="
-          grep -nE '^(BASE_DIR|CUSTOM_DIR|DATA_DIR|CATEGORY_FILE)' add_custom.sh || true
-          echo "=== line.sh (patched) ==="
-          grep -nE '^directory=' line.sh || true
-
       - name: Build dlc binary
         run: |
           go build -v -o dlc .
 
-      - name: Run custom geosite build
+      - name: Prepare working directories
+        run: |
+          mkdir -p my-custom
+          mkdir -p release
+
+      - name: Fetch remote lists and normalize
         shell: bash
         run: |
-          if [[ "${{ github.event.inputs.refresh_remote_lists }}" == "true" ]]; then
-            sed -i 's/^# run_download$/run_download/' add_custom.sh
-            echo "Remote list refresh: ENABLED"
-          else
-            echo "Remote list refresh: DISABLED"
-          fi
+          python <<'PY'
+          import os
+          import re
+          import requests
+          from pathlib import Path
 
-          bash add_custom.sh
+          ROOT = Path(".")
+          CUSTOM = ROOT / "my-custom"
+          CUSTOM.mkdir(exist_ok=True)
 
-      - name: Verify outputs
+          def write_lines(path: Path, lines):
+              cleaned = []
+              seen = set()
+              for line in lines:
+                  line = line.strip().lower()
+                  if not line:
+                      continue
+                  if line.startswith("#"):
+                      continue
+                  line = re.sub(r'[\s\$\|\^]+$', '', line)
+                  if not re.fullmatch(r"[a-z0-9.-]+", line):
+                      continue
+                  if line.startswith(".") or line.endswith("."):
+                      continue
+                  if ".." in line:
+                      continue
+                  if line not in seen:
+                      seen.add(line)
+                      cleaned.append(line)
+              path.write_text("\n".join(cleaned) + ("\n" if cleaned else ""), encoding="utf-8")
+
+          def fetch_text(url, timeout=60):
+              r = requests.get(url, timeout=timeout)
+              r.raise_for_status()
+              return r.text
+
+          def parse_dnsmasq_server(text):
+              out = []
+              for line in text.splitlines():
+                  m = re.match(r"^server=/([^/]+)/", line.strip())
+                  if m:
+                      out.append(m.group(1))
+              return out
+
+          def parse_hosts_second_column(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#"):
+                      continue
+                  parts = line.split()
+                  if len(parts) >= 2:
+                      out.append(parts[1])
+              return out
+
+          def parse_plain_first_column(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#"):
+                      continue
+                  out.append(line.split()[0])
+              return out
+
+          def parse_d3ward_hosts(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if line.startswith("0.0.0.0 "):
+                      parts = line.split()
+                      if len(parts) >= 2:
+                          out.append(parts[1])
+              return out
+
+          def parse_adblock_domains(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if "/" in line:
+                      continue
+                  if line.startswith("||") and "^" in line:
+                      domain = line.split("^")[0][2:].strip()
+                      domain = domain.rstrip("$|")
+                      out.append(domain)
+              return out
+
+          sources = [
+              ("mahavpn-oisd-big", "https://big.oisd.nl/dnsmasq", parse_dnsmasq_server),
+              ("mahavpn-small-block", "https://small.oisd.nl/dnsmasq", parse_dnsmasq_server),
+              ("mahavpn-oisd-nsfw", "https://nsfw.oisd.nl/dnsmasq", parse_dnsmasq_server),
+              ("mahavpn-d3ward", "https://raw.githubusercontent.com/d3ward/toolz/master/src/d3host.txt", parse_d3ward_hosts),
+              ("mahavpn-antiscam", "https://raw.githubusercontent.com/malikshi/antiscam/refs/heads/main/antiscam.txt", parse_plain_first_column),
+              ("mahavpn-doh", "https://raw.githubusercontent.com/malikshi/dns_ip/main/domains-doh.txt", parse_plain_first_column),
+              ("mahavpn-malicious", "https://raw.githubusercontent.com/elliotwutingfeng/Inversion-DNSBL-Blocklists/main/Google_hostnames_light.txt", parse_plain_first_column),
+              ("mahavpn-phishing", "https://phishing.army/download/phishing_army_blocklist_extended.txt", parse_plain_first_column),
+              ("mahavpn-adaway", "https://adaway.org/hosts.txt", parse_hosts_second_column),
+              ("mahavpn-whatsapp-new", "https://blocklistproject.github.io/Lists/alt-version/whatsapp-nl.txt", parse_plain_first_column),
+          ]
+
+          for filename, url, parser in sources:
+              print(f"[FETCH] {filename} <- {url}")
+              text = fetch_text(url)
+              lines = parser(text)
+              write_lines(CUSTOM / filename, lines)
+
+          adblock_urls = [
+              "https://easylist.to/easylist/easylist.txt",
+              "https://filters.adtidy.org/extension/ublock/filters/3.txt",
+          ]
+
+          ads_customku = []
+          for url in adblock_urls:
+              print(f"[FETCH] ads-customku <- {url}")
+              text = fetch_text(url)
+              ads_customku.extend(parse_adblock_domains(text))
+          write_lines(CUSTOM / "ads-customku", ads_customku)
+
+          # gabungkan malicious ke small-block seperti perilaku skrip lama
+          small_block = (CUSTOM / "mahavpn-small-block").read_text(encoding="utf-8").splitlines()
+          malicious = (CUSTOM / "mahavpn-malicious").read_text(encoding="utf-8").splitlines()
+          write_lines(CUSTOM / "mahavpn-small-block", small_block + malicious)
+
+          # gabungkan whatsapp-new ke whatsapp jika file whatsapp sudah ada
+          whatsapp = []
+          whatsapp_path = CUSTOM / "mahavpn-whatsapp"
+          if whatsapp_path.exists():
+              whatsapp = whatsapp_path.read_text(encoding="utf-8").splitlines()
+          whatsapp_new = (CUSTOM / "mahavpn-whatsapp-new").read_text(encoding="utf-8").splitlines()
+          write_lines(whatsapp_path, whatsapp + whatsapp_new)
+          (CUSTOM / "mahavpn-whatsapp-new").unlink(missing_ok=True)
+
+          # hapus baris tertentu seperti skrip line.sh
+          delete_exact = {"bit.ly", "localhost"}
+          target_files = {
+              "ads-customku",
+              "mahavpn-antiscam",
+              "mahavpn-d3ward",
+              "mahavpn-oisd-big",
+              "mahavpn-oisd-nsfw",
+              "mahavpn-small-block",
+              "mahavpn-adaway",
+          }
+
+          for path in CUSTOM.iterdir():
+              if not path.is_file():
+                  continue
+              lines = path.read_text(encoding="utf-8").splitlines()
+              if path.name in target_files:
+                  lines = [x for x in lines if x not in delete_exact]
+              write_lines(path, lines)
+          PY
+
+      - name: Copy custom files into data
         shell: bash
+        run: |
+          for file in my-custom/*; do
+            [ -f "$file" ] || continue
+            cp "$file" "data/$(basename "$file")"
+          done
+
+      - name: Update category entries
+        shell: bash
+        run: |
+          for file in my-custom/*; do
+            [ -f "$file" ] || continue
+            name="$(basename "$file")"
+            grep -qxF "$name" category || echo "$name" >> category
+          done
+
+      - name: Build geosite.dat
+        run: |
+          ./dlc -datapath ./data -outputdir ./release -outputname geosite.dat
+
+      - name: Verify output
         run: |
           test -f release/geosite.dat
           ls -lh release/geosite.dat
           sha256sum release/geosite.dat
 
-      - name: Upload geosite artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: geosite-dat
           path: |
             release/geosite.dat
+            my-custom/
             category
-          if-no-files-found: error
