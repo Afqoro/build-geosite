@@ -11,33 +11,6 @@ jobs:
       contents: read
 
     steps:
-      - name: Debug custom lists
-        shell: bash
-        run: |
-          echo "=== category entries (mahavpn) ==="
-          grep -i 'mahavpn' category || true
-
-          echo
-          echo "=== files in my-custom ==="
-          ls -lah my-custom || true
-
-          echo
-          echo "=== files in data ==="
-          ls -lah data | grep 'mahavpn' || true
-
-          echo
-          echo "=== check empty custom files ==="
-          for f in my-custom/*; do
-            [ -f "$f" ] || continue
-            echo "$(basename "$f") : $(wc -l < "$f") lines"
-          done
-
-          echo
-          echo "=== check empty data files ==="
-          for f in data/mahavpn-*; do
-            [ -f "$f" ] || continue
-            echo "$(basename "$f") : $(wc -l < "$f") lines"
-          done    
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -247,6 +220,34 @@ jobs:
             fi
           done
 
+      - name: Debug custom lists
+        shell: bash
+        run: |
+          echo "=== category entries (mahavpn) ==="
+          grep -i 'mahavpn' category || true
+
+          echo
+          echo "=== files in my-custom ==="
+          ls -lah my-custom || true
+
+          echo
+          echo "=== files in data ==="
+          ls -lah data | grep 'mahavpn' || true
+
+          echo
+          echo "=== check empty custom files ==="
+          for f in my-custom/*; do
+            [ -f "$f" ] || continue
+            echo "$(basename "$f") : $(wc -l < "$f") lines"
+          done
+
+          echo
+          echo "=== check empty data files ==="
+          for f in data/mahavpn-*; do
+            [ -f "$f" ] || continue
+            echo "$(basename "$f") : $(wc -l < "$f") lines"
+          done
+          
       - name: Build geosite.dat
         run: |
           ./dlc -datapath ./data -outputdir ./release -outputname geosite.dat
