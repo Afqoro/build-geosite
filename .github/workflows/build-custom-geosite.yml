@@ -6,13 +6,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -33,23 +34,22 @@ jobs:
         run: |
           go build -v -o dlc .
 
-      - name: Prepare working directories
+      - name: Prepare directories
         run: |
-          mkdir -p my-custom
+          mkdir -p generated-custom
           mkdir -p release
 
-      - name: Fetch remote lists and normalize
+      - name: Fetch remote lists and write into generated-custom
         shell: bash
         run: |
           python <<'PY'
-          import os
           import re
           import requests
           from pathlib import Path
 
           ROOT = Path(".")
-          CUSTOM = ROOT / "my-custom"
-          CUSTOM.mkdir(exist_ok=True)
+          OUT = ROOT / "generated-custom"
+          OUT.mkdir(exist_ok=True)
 
           def write_lines(path: Path, lines):
               cleaned = []
@@ -144,7 +144,7 @@ jobs:
               print(f"[FETCH] {filename} <- {url}")
               text = fetch_text(url)
               lines = parser(text)
-              write_lines(CUSTOM / filename, lines)
+              write_lines(OUT / filename, lines)
 
           adblock_urls = [
               "https://easylist.to/easylist/easylist.txt",
@@ -156,113 +156,90 @@ jobs:
               print(f"[FETCH] ads-customku <- {url}")
               text = fetch_text(url)
               ads_customku.extend(parse_adblock_domains(text))
-          write_lines(CUSTOM / "ads-customku", ads_customku)
+          write_lines(OUT / "ads-customku", ads_customku)
 
-          # gabungkan malicious ke small-block seperti perilaku skrip lama
-          small_block = (CUSTOM / "mahavpn-small-block").read_text(encoding="utf-8").splitlines()
-          malicious = (CUSTOM / "mahavpn-malicious").read_text(encoding="utf-8").splitlines()
-          write_lines(CUSTOM / "mahavpn-small-block", small_block + malicious)
+          # gabungkan malicious ke small-block
+          small_block = (OUT / "mahavpn-small-block").read_text(encoding="utf-8").splitlines()
+          malicious = (OUT / "mahavpn-malicious").read_text(encoding="utf-8").splitlines()
+          write_lines(OUT / "mahavpn-small-block", small_block + malicious)
 
-          # gabungkan whatsapp-new ke whatsapp jika file whatsapp sudah ada
-          whatsapp = []
-          whatsapp_path = CUSTOM / "mahavpn-whatsapp"
-          if whatsapp_path.exists():
-              whatsapp = whatsapp_path.read_text(encoding="utf-8").splitlines()
-          whatsapp_new = (CUSTOM / "mahavpn-whatsapp-new").read_text(encoding="utf-8").splitlines()
-          write_lines(whatsapp_path, whatsapp + whatsapp_new)
-          (CUSTOM / "mahavpn-whatsapp-new").unlink(missing_ok=True)
-
-          # hapus baris tertentu seperti skrip line.sh
-          delete_exact = {"bit.ly", "localhost"}
-          target_files = {
-              "ads-customku",
-              "mahavpn-antiscam",
-              "mahavpn-d3ward",
-              "mahavpn-oisd-big",
-              "mahavpn-oisd-nsfw",
-              "mahavpn-small-block",
-              "mahavpn-adaway",
-          }
-
-          for path in CUSTOM.iterdir():
-              if not path.is_file():
-                  continue
-              lines = path.read_text(encoding="utf-8").splitlines()
-              if path.name in target_files:
-                  lines = [x for x in lines if x not in delete_exact]
-              write_lines(path, lines)
+          # gabungkan whatsapp-new ke whatsapp lama dari repo jika ada
+          existing_whatsapp = Path("my-custom/mahavpn-whatsapp")
+          old_lines = existing_whatsapp.read_text(encoding="utf-8").splitlines() if existing_whatsapp.exists() else []
+          new_lines = (OUT / "mahavpn-whatsapp-new").read_text(encoding="utf-8").splitlines()
+          write_lines(OUT / "mahavpn-whatsapp", old_lines + new_lines)
+          (OUT / "mahavpn-whatsapp-new").unlink(missing_ok=True)
           PY
 
-      - name: Copy non-empty custom files into data
+      - name: Copy manual custom files into data
         shell: bash
         run: |
           for file in my-custom/*; do
             [ -f "$file" ] || continue
-            if [ -s "$file" ]; then
-              cp "$file" "data/$(basename "$file")"
-              echo "copied: $(basename "$file")"
-            else
-              echo "skip empty file: $(basename "$file")"
-            fi
+            cp "$file" "data/$(basename "$file")"
           done
 
-      - name: Update category entries
+      - name: Copy generated files into data
         shell: bash
         run: |
-          for file in my-custom/*; do
+          for file in generated-custom/*; do
+            [ -f "$file" ] || continue
+            cp "$file" "data/$(basename "$file")"
+          done
+
+      - name: Ensure category entries exist
+        shell: bash
+        run: |
+          for file in my-custom/* generated-custom/*; do
             [ -f "$file" ] || continue
             name="$(basename "$file")"
-            if [ -s "$file" ]; then
-              grep -qxF "$name" category || echo "$name" >> category
-              echo "category ok: $name"
-            else
-              echo "category skipped for empty file: $name"
-            fi
+            grep -qxF "$name" category || echo "$name" >> category
           done
 
-      - name: Debug custom lists
+      - name: Debug resulting files
         shell: bash
         run: |
-          echo "=== category entries (mahavpn) ==="
-          grep -i 'mahavpn' category || true
-
+          echo "=== generated-custom ==="
+          ls -lah generated-custom || true
           echo
-          echo "=== files in my-custom ==="
-          ls -lah my-custom || true
-
+          echo "=== data mahavpn ==="
+          ls -lah data | grep 'mahavpn\|ads-customku' || true
           echo
-          echo "=== files in data ==="
-          ls -lah data | grep 'mahavpn' || true
-
+          echo "=== sample ads-customku ==="
+          sed -n '1,15p' data/ads-customku || true
           echo
-          echo "=== check empty custom files ==="
-          for f in my-custom/*; do
-            [ -f "$f" ] || continue
-            echo "$(basename "$f") : $(wc -l < "$f") lines"
-          done
+          echo "=== sample mahavpn-oisd-big ==="
+          sed -n '1,10p' data/mahavpn-oisd-big || true
 
-          echo
-          echo "=== check empty data files ==="
-          for f in data/mahavpn-*; do
-            [ -f "$f" ] || continue
-            echo "$(basename "$f") : $(wc -l < "$f") lines"
-          done
-          
       - name: Build geosite.dat
         run: |
           ./dlc -datapath ./data -outputdir ./release -outputname geosite.dat
 
-      - name: Verify output
+      - name: Show built file size
         run: |
-          test -f release/geosite.dat
           ls -lh release/geosite.dat
           sha256sum release/geosite.dat
 
-      - name: Upload artifact
+      - name: Commit updated lists back to repository
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data category generated-custom
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update generated domain lists"
+            git push
+          fi
+
+      - name: Upload geosite artifact
         uses: actions/upload-artifact@v4
         with:
           name: geosite-dat
           path: |
             release/geosite.dat
-            my-custom/
+            generated-custom/
             category
