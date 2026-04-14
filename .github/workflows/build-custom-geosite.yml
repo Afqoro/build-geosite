@@ -171,6 +171,49 @@ jobs:
           (OUT / "mahavpn-whatsapp-new").unlink(missing_ok=True)
           PY
 
+      - name: Normalize manual custom files safely
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          ROOT = Path("my-custom")
+          preserve_prefixes = ("regexp:", "keyword:", "include:")
+
+          for path in ROOT.glob("*"):
+              if not path.is_file():
+                  continue
+
+              lines = path.read_text(encoding="utf-8").splitlines()
+              out = []
+              seen_domains = set()
+
+              for line in lines:
+                  raw = line.strip()
+
+                  if not raw:
+                      continue
+
+                  if raw.startswith("#"):
+                      out.append(raw)
+                      continue
+
+                  lowered = raw.lower()
+
+                  if lowered.startswith(preserve_prefixes):
+                      out.append(lowered)
+                      continue
+
+                  if lowered.startswith("*."):
+                      lowered = lowered[2:]
+
+                  if lowered not in seen_domains:
+                      seen_domains.add(lowered)
+                      out.append(lowered)
+
+              path.write_text("\n".join(out) + "\n", encoding="utf-8")
+          PY
+    
       - name: Copy manual custom files into data
         shell: bash
         run: |
@@ -211,6 +254,15 @@ jobs:
           echo "=== sample mahavpn-oisd-big ==="
           sed -n '1,10p' data/mahavpn-oisd-big || true
 
+      - name: Preview suspicious wildcard lines
+        shell: bash
+        run: |
+          echo "=== wildcard lines in my-custom ==="
+          grep -RIn '^\*\.' my-custom || true
+
+          echo "=== wildcard lines in data ==="
+          grep -RIn '^\*\.' data || true
+    
       - name: Build geosite.dat
         run: |
           ./dlc -datapath ./data -outputdir ./release -outputname geosite.dat
