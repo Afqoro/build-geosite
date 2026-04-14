@@ -1,6 +1,5 @@
 # category entertainment
 # This list contains services related to entertainment & games & music & podcasts & videos outside China mainland.
-
 include:abema
 include:amc
 include:anime
@@ -232,7 +231,6 @@ me.com
 mzstatic.com
 # > Apple News
 apple.news
-  
 # > Apple TV
 tv.apple.com
 full:np-edge.itunes.apple.com

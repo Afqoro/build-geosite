@@ -11,7 +11,6 @@ social-overlay-launchdarkly-api-prod
 social-overlay-token-exchange-api-prod
 epicgames.dev
 epicgames.net
-
 include:steam
 include:steamunlocked
 steamdb.info

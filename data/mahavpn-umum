@@ -3,7 +3,6 @@ include:google
 include:fastly
 include:mahavpn-doh
 include:github
-
 keyword:google
 keyword:gvt
 # Services & Softwares
@@ -11,7 +10,7 @@ include:category-android-app-download
 include:category-browser-!cn
 # AI Chat
 include:category-ai-chat-!cn
-*.deepseek.com
+deepseek.com
 chat.deepseek.com
 # Art & Design & Photography
 include:artstation
@@ -67,7 +66,6 @@ include:rumble
 include:category-orgs
 include:category-mobile-repair
 include:category-ntp
-include:decryptipastore # iOS
 include:accuweather
 include:adblock
 include:adblockplus
@@ -76,7 +74,6 @@ include:addtoany
 include:adguard
 include:aptoide
 include:arphic
-include:authy
 include:bitly
 include:bitwarden
 include:blender
@@ -102,7 +99,6 @@ include:hcaptcha
 include:heroku
 include:hurricaneelectric
 include:iina
-include:imageglass
 include:infrapedia
 include:inoreader
 include:isgd
@@ -115,7 +111,6 @@ include:localizejs
 include:madshi
 include:mapbox
 include:mega
-include:mpv
 include:netlify
 include:notion
 include:ok
@@ -153,7 +148,6 @@ include:trello
 include:tumblr
 include:tutanota
 include:vercel
-include:webflow
 include:wix
 include:wordpress
 include:zendesk
