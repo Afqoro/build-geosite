@@ -426,36 +426,36 @@ jobs:
       - name: Publish generated files to generated branch
         shell: bash
         run: |
-          set -e
+          set -euo pipefail
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          mkdir -p /tmp/generated-publish
-          cp -r data /tmp/generated-publish/
-          cp -r generated-custom /tmp/generated-publish/
-          cp -r release /tmp/generated-publish/
-          cp category /tmp/generated-publish/category
+          PUBLISH_DIR="/tmp/generated-publish"
+          BRANCH_DIR="/tmp/generated-branch"
 
-          current_branch="$(git rev-parse --abbrev-ref HEAD)"
+          rm -rf "$PUBLISH_DIR" "$BRANCH_DIR"
+          mkdir -p "$PUBLISH_DIR"
 
-          if git ls-remote --exit-code --heads origin generated; then
-            git fetch origin generated
-            git checkout generated
-            git reset --hard origin/generated
-          else
-            git checkout --orphan generated
-            git rm -rf . || true
-          fi
+          cp -r data "$PUBLISH_DIR/"
+          cp -r generated-custom "$PUBLISH_DIR/"
+          cp -r release "$PUBLISH_DIR/"
+          cp category "$PUBLISH_DIR/category"
+
+          git fetch origin generated
+
+          git worktree add "$BRANCH_DIR" origin/generated
+
+          cd "$BRANCH_DIR"
 
           find . -mindepth 1 -maxdepth 1 \
             ! -name '.git' \
             -exec rm -rf {} +
 
-          cp -r /tmp/generated-publish/data .
-          cp -r /tmp/generated-publish/generated-custom .
-          cp -r /tmp/generated-publish/release .
-          cp /tmp/generated-publish/category .
+          cp -r "$PUBLISH_DIR/data" .
+          cp -r "$PUBLISH_DIR/generated-custom" .
+          cp -r "$PUBLISH_DIR/release" .
+          cp "$PUBLISH_DIR/category" .
 
           cat > README.md <<'EOF'
           # Generated output
@@ -470,10 +470,11 @@ jobs:
             echo "No changes to commit on generated branch."
           else
             git commit -m "chore: update generated domain lists"
-            git push origin generated
+            git push origin HEAD:generated
           fi
 
-          git checkout "$current_branch"
+          cd /
+          git worktree remove "$BRANCH_DIR" --force
 
       - name: Upload geosite artifact
         uses: actions/upload-artifact@v4
