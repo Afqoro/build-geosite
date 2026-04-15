@@ -2,15 +2,12 @@
 
 # AI Chat
 include:category-ai-!cn
-
 # Advertisment & Analytics
 include:pubmatic
 include:taboola
-
 # Anti-censorship & Anti-GFW & Privacy protection & VPN tools
 include:category-anticensorship
 include:category-proxy-tunnels
-
 # Art & Design & Photography
 include:artstation
 include:dribbble
@@ -28,16 +25,13 @@ include:realtype
 include:typenetwork
 include:typography
 include:webtype
-
 bunka.go.jp
 uxthemes.com
-
 # Automobile
 include:bmw
 include:bridgestone
 include:tesla
 include:volvo
-
 # Bank & Finance
 include:category-finance
 include:dowjones
@@ -48,26 +42,19 @@ include:stripe
 include:visa
 ## アプリペイ
 app-pay.jp
-
 # CDN companies & Services
 include:category-cdn-!cn
-
 include:awempire
 include:scaleflex
 include:wistia
-
 # Certificate authorities
 include:category-cas
-
 # Communications
 include:category-communication
-
 # Cryptocurrency
 include:category-cryptocurrency
-
 # E-commerce
 include:category-ecommerce
-
 # E-learning & Knowledge & Press & Scholar & Science & Technology
 include:anandtech
 include:betterexplained
@@ -102,14 +89,11 @@ include:udacity
 include:udemy
 include:w3schools
 include:zotero
-
 chemequations.com # 线上化学方程式！
 geogebra.org
 wolframalpha.com
-
 # Entertainment & Games & Music & Podcasts & Videos
 include:category-entertainment
-
 # File & Image & Video hosting
 include:0x0
 include:casimages
@@ -129,27 +113,20 @@ include:pstorage
 include:rumble
 include:streamable
 include:terabox
-
 # Forums & Social network
 include:category-forums
 include:category-social-media-!cn
-
 # IPFS
 include:category-ipfs
-
 # Media & News & Press
 include:category-media
 include:pugpig
-
 # Organizations
 include:category-orgs
-
 # Porn
 include:category-porn
-
 # Religion
 include:falungong
-
 # Services & Softwares
 include:category-android-app-download
 include:category-antivirus
@@ -161,10 +138,8 @@ include:category-password-management
 include:category-urlshortner
 include:category-web-archive
 include:decryptipastore # iOS
-
 include:rsshub
 include:rsshub-3rd
-
 include:accuweather
 include:adblock
 include:adblockplus
@@ -245,7 +220,6 @@ include:zendesk
 include:zeplin
 include:zoho
 include:zoom
-
 ## Aurora Open Source Software (https://gitlab.com/AuroraOSS)
 auroraoss.com
 ## BiliPlus
@@ -281,13 +255,10 @@ originlab.com
 osmand.net
 ## Xiaomi Flash (not affiliated with the official Xiaomi)
 xiaomiflash.com
-
 # Software development
 include:category-dev
-
 # Tech companies
 include:category-companies
-
 # Torrent websites
 include:1337x
 include:btdig
@@ -297,10 +268,8 @@ include:piratebay
 include:rarbg
 dmhy.org
 rutor.info
-
 # VPN services
 include:category-vpnservices
-
 # Wiki
 include:fandom
 include:miraheze
@@ -309,11 +278,9 @@ include:translatewiki
 include:wikidot
 include:wikihow
 include:wikimedia
-
 atwiki.jp
 touhouwiki.net
 wiki.gg
-
 # Others
 include:avaxhome
 include:espressif
@@ -331,5 +298,4 @@ include:tsquare
 include:windy
 include:xdty
 include:xingrz
-
 sinyalee.com

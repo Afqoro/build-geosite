@@ -9,6 +9,5 @@ esetsoftware.com
 
 # ESET Password Manager
 full:eset-prod-ca48648d0ce7cadf.elb.eu-central-1.amazonaws.com
-
 # Connection between the Agent and ESET PROTECT
 full:epc-de-agent-proxy.germanywestcentral.cloudapp.azure.com

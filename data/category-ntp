@@ -6,13 +6,10 @@ include:category-ntp-jp
 full:time.apple.com
 full:time.asia.apple.com
 full:time.euro.apple.com
-
 # AWS
 full:time.aws.com
-
 # Cloudflare
 full:time.cloudflare.com
-
 # Facebook
 # regexp:^time([1-5])?\.facebook\.com$
 full:time.facebook.com
@@ -21,7 +18,6 @@ full:time2.facebook.com
 full:time3.facebook.com
 full:time4.facebook.com
 full:time5.facebook.com
-
 # Google
 # regexp:^time([1-4])?.google.com$
 full:time.google.com
@@ -29,13 +25,10 @@ full:time1.google.com
 full:time2.google.com
 full:time3.google.com
 full:time4.google.com
-
 # Ubuntu
 full:ntp.ubuntu.com
-
 # Windows
 full:time.windows.com
-
 # NIST: https://tf.nist.gov/tf-cgi/servers.cgi
 # regexp:^((((ut1-wwv)|(ntp\-(b|d|wwv))|(time(\-(([a-e]\-(g|b))|([a-e]\-wwv)))?))\.nist\.gov)|((ntp-c|ut1-time)|(utcnist(2|3)?))\.colorado\.edu)$
 full:ut1-wwv.nist.gov
@@ -63,7 +56,6 @@ full:ut1-time.colorado.edu
 full:utcnist.colorado.edu
 full:utcnist2.colorado.edu
 full:utcnist3.colorado.edu
-
 # NTP-servers: https://ntp-servers.net/servers.html
 # regexp:^ntp[0-7]\.ntp-servers\.net$
 full:ntp0.ntp-servers.net
@@ -74,14 +66,12 @@ full:ntp4.ntp-servers.net
 full:ntp5.ntp-servers.net
 full:ntp6.ntp-servers.net
 full:ntp7.ntp-servers.net
-
 # TimeNL
 full:ntp.time.nl
 full:ntp1.time.nl
 full:ntp2.time.nl
 full:ntppool1.time.nl
 full:ntppool2.time.nl
-
 clock.isc.org
 ntp.fiord.ru
 ntp.nat.ms

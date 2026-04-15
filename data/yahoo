@@ -2,7 +2,6 @@ include:flickr
 
 # All .yahoo domains
 yahoo
-
 yahoo.ae
 yahoo.am
 yahoo.as
@@ -152,7 +151,6 @@ yahoo.tm
 yahoo.tn
 yahoo.vg
 yahoo.ws
-
 # Others
 maktoob.com
 myguide.hk
@@ -170,9 +168,7 @@ yimg.com
 yimg.jp
 ymail.com
 yusercontent.com
-
 full:cdn.js7k.com
-
 # Ads/tracking
 ads.yahoo.com @ads
 gemini.yahoo.com @ads

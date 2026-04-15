@@ -265,9 +265,7 @@ zjbyte.net
 zjcdn.com
 zjfcdn.com
 zjgslb.com
-
 full:bytedance.map.fastly.net @!cn
-
 # 今日头条
 toutiao.com
 toutiaoapi.com
@@ -282,7 +280,6 @@ toutiaoimg.net
 toutiaopage.com
 toutiaostatic.com
 toutiaovod.com
-
 # 西瓜视频
 bdxiguaimg.com
 bdxigualive.com
@@ -301,25 +298,19 @@ xiguashipin.cn
 xiguashipin.net
 xiguavideo.cn
 xiguavideo.net
-
 # 快懂百科
 baike.com
-
 # 悟空问答
 wukong.com
 wukongwenda.cn
 wukongwenda.com
-
 # 懂车帝
 include:dongchedi
-
 # 阳关宽频网
 365yg.com
-
 # GoGoKid
 gogokid.com.cn
 gogokid.com
-
 # 皮皮虾
 hapierxia.com
 hapipixia.com
@@ -333,22 +324,17 @@ ppximg.com
 ppxstatic.com
 ppxvod.com
 xiaoxiaapi.com
-
 # 上海格物致品
 douyinec.com
 ecombdapi.com
 ecombdstatic.com
 jinritemai.com
-
 # faceu
 faceu.com
-
 # 轻颜相机
 ulikecam.com
-
 # RsProxy 镜像
 rsproxy.cn
-
 # 半次元 (dead)
 # 沪ICP备2021005742号
 #bcy.net
@@ -358,7 +344,6 @@ rsproxy.cn
 #bcysnssdk.com
 #bcystatic.com
 #bcyvod.com
-
 # Ads/tracking
 ad.toutiao.com @ads
 bds.snssdk.com @ads

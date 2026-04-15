@@ -56,7 +56,6 @@ include:ximalaya @ads
 include:yahoo @ads
 include:yandex @ads
 include:zhihu @ads
-
 # Other domains for ads serving
 51.la
 51y5.net
@@ -120,27 +119,20 @@ trafficfactory.biz
 tsyndicate.com
 uberads.com
 wwads.cn
-
 # 12306
 ad.12306.cn
-
 # 36Kr
 adx.36kr.com
-
 # AdHub
 hubcloud.com.cn
-
 # AdScope
 beizi.biz
-
 # ali213
 click.ali213.net
 pbmp.ali213.net
-
 # AppLovin
 applovin.com
 applvn.com
-
 # Caixin
 # regexp:^pinggai\d\.caixin\.com$
 full:pinggai0.caixin.com
@@ -153,98 +145,73 @@ full:pinggai6.caixin.com
 full:pinggai7.caixin.com
 full:pinggai8.caixin.com
 full:pinggai9.caixin.com
-
 # Chinaso
 adq.chinaso.com
 stat.chinaso.com
-
 # hiido
 mlog.hiido.com
 ylog.hiido.com
-
 # hpply
 ad.hpplay.cn
 adc.hpplay.cn
 adeng.hpplay.cn
-
 # Httpool
 toboads.com
-
 # ironSource Atom
 analytics-data.io
 atom-data.io
 ironbeast.io
-
 # joyplus
 advapi.joyplus.tv
 advapikj.joyplus.tv
-
 # pocoiq
 cdn.pocoiq.cn
 oct.pocoiq.cn
-
 # Qiniu
 dn-growing.qbox.me
-
 # tagtic
 g1.tagtic.cn
 xy-log.tagtic.cn
-
 # UNI Marketing
 ad.unimhk.com
-
 # UCloud
 das-rpt-log.ucloud.cn
-
 # 数字精准广告
 telecome.cn
 unioncom.cc
-
 # 亿帆广告
 yfanads.cn
 yfanads.com
-
 # 数字联盟(device ad id)
 shuzilm.cn
-
 # 中国广告协会CAID
 china-caa.org
 cnaa123.com
 chinaciaf.org
 iabchina.cn
-
 # 卓信id
 zxid-api.mobileservice.cn
 zxid-m.mobileservice.cn
-
 # 深演智能
 ipinyou.com
 ipinyou.com.cn
-
 # 智云众 OptAim
 optaim.com
-
 # 加和科技 AddNewer
 reachmax.cn
-
 # 热云数据
 reyun.com
-
 # 神策数据
 static.sensorsdata.cn
-
 # 诸葛io
 zhugeapi.com
 zhugeapi.net
 zhugeio.com
-
 # 酷云互动
 kuyun.com
-
 # 车来了
 atrace.chelaile.net.cn
 logs.chelaile.net.cn
-
 # 航旅纵横
 analytics.umetrip.com
 sensors.umetrip.com.cn

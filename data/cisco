@@ -2,7 +2,6 @@ include:webex
 
 # All .cisco domains
 cisco
-
 academynetriders.com
 cciernslabs.com
 cciesecuritylabs.com
@@ -89,7 +88,6 @@ wballiance.com
 whyiwantciscotelepresence.com
 wifi-mx.com
 youtubecisco.com
-
 # App Dynamic
 app-dynamics.com
 appdynamics.co.uk
@@ -99,20 +97,16 @@ appdynamics.fr
 appdynamics.info
 appdynamics.jp
 appdynamics.org
-
 # Meraki Go
 mearki.com
 meraki-go.com
 meraki.hk
 merakigo.com
-
 # Tail-f
 tail-f.com
 tailf.com
-
 full:cisco.evergage.com
 full:ciscolivehls-i.akamaihd.net
-
 # DNS service
 umbrella.com
 opendns.com

@@ -3,7 +3,6 @@ yandex
 
 # яндекс.рф
 xn--d1acpjx3f.xn--p1ai
-
 berizaryad.ru
 cabconnect.org
 clck.ru
@@ -88,10 +87,8 @@ yastat.net
 yastatic-net.ru
 yastatic.net
 yccdn.ru
-
 # Watching movies, included in the Yandex subscription
 include:kinopoisk
-
 # Ads/tracking
 adfox.ru @ads
 admetrica.ru @ads

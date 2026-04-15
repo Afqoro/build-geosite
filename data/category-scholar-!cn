@@ -15,7 +15,6 @@ include:sciencedirect
 include:springer
 include:taylorfrancis
 include:z-library
-
 aacrjournals.org # AACR 美国癌症研究学会
 academic.eb.com # Britannica Academic
 acaric.co.jp # 株式会社アカリク
@@ -25,11 +24,9 @@ acs.org
 agu.org # American Geophysical Union
 aiaa.org # AIAA 美国航空航天学会
 aimsciences.org # AIMS 美国科学数学协会期刊库
-
 # 華藝學術
 airiti.com
 airitilibrary.com
-
 alexanderstreet.com # Alexander Street
 alphaxiv.org # alphaXiv
 altmetric.com
@@ -101,11 +98,9 @@ icevirtuallibrary.com # 英国土木工程师学会 ICE Virtual Library
 icsd.fiz-karlsruhe.de # Inorganic Crystal Structure Database
 igi-global.com # IGI Global 平台
 igpublish.com # iG Publishing电子图书
-
 #  漢珍數字圖書股份有限公司
 hanzhen.xmulib.org # 厦门大学汉珍数位
 infolinker.com.tw
-
 informs.org
 ioinformatics.org
 iop.org
@@ -152,13 +147,11 @@ rupress.org
 sae.org
 sagepub.com
 scholarpedia.org
-
 # Science Online From AAAS
 science.com
 science.org
 sciencemag.org
 scienceonline.org
-
 scientificamerican.com
 scitation.org
 semanticscholar.org
@@ -170,13 +163,11 @@ spiedigitallibrary.org
 statsmakemecry.com
 thelancet.com
 tickdata.com # Tick Data-Futures and Indices Historical Data
-
 # Thieme Gruppe
 thieme.de
 thieme-connect.com
 thieme-connect.de
 full:medone-education.thieme.com
-
 totalmateria.com # Total Materia
 uchicago.edu
 ucla.edu
@@ -189,7 +180,6 @@ wolterskluwer.com
 worldscientific.com
 yale.edu
 zenodo.org
-
 full:angle.com.tw # 元照出版
 full:beck-online.beck.de # Beck-Online数据库
 full:databank.worldbank.org # World DataBank 世界经济学数据库
@@ -198,10 +188,8 @@ full:dl.begellhouse.com # Begell Digital Library
 full:elib.maruzen.co.jp # Maruzen e-Book Library（MEL）
 full:firstsearch.oclc.org # OCLC FirstSearch
 full:muse.jhu.edu # Project MUSE
-
 # 日经TELECOM数据库
 full:t21.nikkei.co.jp
 full:t21ipau.nikkei.co.jp
-
 full:ulrichsweb.serialssolutions.com
 full:wrds-www.wharton.upenn.edu # Compustat 财务与价格数据库

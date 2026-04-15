@@ -20,23 +20,18 @@ include:category-media-cn
 include:category-network-security-cn
 # Social Media
 include:category-social-media-cn
-
 # Advertisment & Analytics
 include:getui
 include:growingio
 include:jiguang
-
 # 北京贵士信息科技有限公司
 qchannel03.cn
 # 神策数据
 sensorsdata.cn
-
 # category-httpdns-cn is mainly for advertising purpose
 include:category-httpdns-cn
-
 # 号码认证
 # include:category-number-verification-cn
-
 # Bank & Finance & Insurance & Securities
 include:category-bank-cn
 include:category-securities-cn
@@ -44,7 +39,6 @@ include:eastmoney @-!cn
 include:everbright
 include:pingan @-!cn
 include:taikang
-
 ## 航财通·校园付
 cc-pay.cn
 ## 合利宝
@@ -59,10 +53,8 @@ lufaxcdn.com
 pospal.cn
 ## 上海付费通
 shfft.com
-
 # CDN or SDWAN
 include:category-cdn-cn
-
 include:aws-cn
 include:ctyun
 include:maocloud
@@ -70,7 +62,6 @@ include:qingcloud
 include:snodehome
 include:ucloud
 include:yunfanjiasu
-
 ## 百家云
 baijiayun.com
 ## 123 云盘 CDN
@@ -95,13 +86,11 @@ kaipuyun.net
 knet.cn
 ## 江西节点技术服务有限公司
 pkoplink.com
-
 # Cloud Service
 ## 广州润雨科技有限公司 粤ICP备19052839号
 rainyun.com
 ## 深圳市狐蒂云网络科技有限公司 粤ICP备2025387186号-1
 szhdy.com
-
 # E-commerce
 include:58tongcheng
 include:ctrip @-!cn
@@ -120,7 +109,6 @@ include:tongcheng
 include:vancl
 include:youzan
 include:ziroom
-
 ## 无忧易售
 51selling.com
 ## 爱回收
@@ -159,13 +147,11 @@ qyerstatic.com
 ruseer.com
 ## 瞎买
 xiamai.net
-
 # Forums
 include:b3log
 include:kechuang
 include:nga
 include:stage1st
-
 178linux.com # Linux运维部落
 52pojie.cn # 吾爱破解
 anywlan.com # 无线论坛
@@ -192,14 +178,12 @@ uiwow.com # 魔兽有爱论坛
 wuyou.net # 无忧启动论坛
 x-station.cn # X电站
 znds.com # 智能电视网
-
 # 51CTO
 51cto.com
 51ctocdn.cn
 # DCC Forum（心跳文学部中文论坛）
 edgemonix.top # 图床
 monika.love
-
 423down.com # 423Down
 acwifi.net # 路由器技术分享
 appinn.com # 小众软件
@@ -210,7 +194,6 @@ itellyou.cn # MSDN 我告诉你
 moyubuluo.com # 墨鱼部落格 鲁ICP备16022801号-9
 upe.net # 优启通官网（IT天空）
 winos.me # WINOS 精简社区
-
 # Healthcare
 include:category-hospital-cn
 ## 安徽药品人才网
@@ -229,7 +212,6 @@ hdfimg.com
 jsehealth.com
 ## 仁科医疗科技有限公司服务域名，为北大口腔和一些其他国内医院小程序提供服务
 mingxuan.store
-
 # Party and government offices & Public units
 12315.cn
 12321.cn
@@ -244,7 +226,6 @@ nmc.cn
 piyao.org.cn
 ## 中国殡葬网
 zgbznet.com.cn
-
 # Public transportation
 ## 中国国际航空
 include:airchina
@@ -292,7 +273,6 @@ tibetairlines.com.cn
 urumqi-air.com
 ## 厦门航空
 xiamenair.com
-
 ## 中国民航局
 caac.gov.cn
 ## 信天游（航空电子客票验真）
@@ -304,7 +284,6 @@ umetrip.net.cn
 ume-trip.cn
 ## 飞常准
 variflight.com
-
 ## Railway
 12306.cn
 95306.cn
@@ -319,7 +298,6 @@ kuajing84.com
 mygolbs.com
 ## 宁停车
 ningtingche.com
-
 # Science & Technology & Knowledge & Scholar & Press & E-learning & Education
 include:category-education-cn
 include:category-olympiad-in-informatics
@@ -327,7 +305,6 @@ include:category-scholar-cn
 include:category-wiki-cn
 include:guokr
 include:ihuman
-
 ## 青春北京
 ### 共青团北京市委员会信息中心
 include:bjyouth
@@ -349,7 +326,6 @@ zgbk.com
 zjlib.cn
 ## 志愿汇
 zyh365.com
-
 # Services & Softwares
 include:category-ai-cn
 include:category-collaborate-cn
@@ -359,7 +335,6 @@ include:category-game-accelerator-cn
 include:category-netdisk-cn
 include:category-ntp-cn
 include:category-outsource-cn
-
 include:51job
 include:afdian
 include:agora
@@ -395,7 +370,6 @@ include:wolai
 include:zdns
 include:zhangtao
 include:zhubajie
-
 ## 容联七陌 客服 营销
 7moor-fs1.com
 7moor.com
@@ -491,7 +465,6 @@ yinxiang.com
 ## 智联招聘
 zhaopin.cn
 zhaopin.com
-
 # Tech companies & Orginations
 include:aisiku # 北京艾斯酷科技有限公司
 include:akiko # 秋子酱科技
@@ -532,7 +505,6 @@ include:xunlei
 include:youquan # 祐全科技
 include:yuanbei # 上海圆贝信息科技有限公司
 include:zte
-
 51togic.com # 泰捷WEBOX
 avlyun.com # 安天移动安全
 dreame.tech # 追觅科技
@@ -546,7 +518,6 @@ socpk.com # 极客湾移动芯片排行
 suzuki-china.com # 铃木中国官网
 udesk.cn # 沃丰科技
 ysjf.com # 影视飓风
-
 # 飞牛
 fnnas.com
 fnnas.net
@@ -564,33 +535,26 @@ xsbapp.cn
 # 凯迪仕
 juziwulian.com
 kaadas.com
-
 # Telecommunication
 include:chinabroadnet
 include:chinamobile @-!cn
 include:chinatelecom @-!cn
 include:chinatower
 include:chinaunicom @-!cn
-
 # 在线工具
 ## IPIP ip地理位置数据库
 include:ipip @-!cn
-
 ## 白描
 baimiao.tech
 baimiaoapp.com
 shinescan.tech
 uzero.cn
-
 ## 写个字吧
 xgzb.top
-
 ## AnyToCopy 浙ICP备2024055286号-10
 anytocopy.com
-
 ## 华为手表HDC工具箱 鄂ICP备2025146053号
 osbdf.com
-
 chaziyu.com # 滇ICP备2024035496号
 fofa.info # Fofa网站测绘（华顺信安）
 icplishi.com # 粤ICP备20009057号
@@ -603,7 +567,6 @@ ipshudi.com # IP属地查询
 itdog.cn # itdog网站工具箱
 rdnsdb.com # 闽ICP备15009794号
 webmasterhome.cn # 站长之家
-
 # 主页导航
 ## 氪主页
 51kim.com
@@ -623,20 +586,15 @@ limestart.cn
 moulem.com
 ## 轻主页
 qzhuye.com
-
 # Others
 include:8btc
 include:jibencaozuo
 include:sinopec
-
-
 # 应城门户网站
 chugou360.com
 ycrx360.com
-
 # The following domains are carried over from geosite:cn.
 # TODO: Decide how to deal with these domains
-
 0123456789.com
 0379home.com
 055110.com
@@ -1583,7 +1541,6 @@ zuowen.com
 zuowen8.com
 zuowenwang.net
 zztfly.com
-
 # 京ICP备12006877号-1
 fm3838.com
 larsonlimited.com
@@ -1591,53 +1548,38 @@ runsheng.com
 vzuu.com
 zoom3g.com
 zoomyou.cn
-
 # 酷家乐 杭州群核信息技术有限公司 浙ICP备12022366号-6
 kujiale.com
-
 # 建始网 鄂ICP备05004864号-1
 jsw118.com
-
 # 陕西城乡劳动就业网 陕ICP备19016945号-1
 sxcxldjy.com
-
 # 陕西建筑资质代办 陕ICP备17011269号
 shanxijianzhuzizhi.com
-
 # 纬横数据 鲁ICP备17051601号-1
 vhengdata.com
-
 # 湖南智擎科技有限公司
 educoder.net
 tokcoder.com
 trustie.net
-
 # 浙江御鹿电子科技有限公司 麦瑞克健身设备 & 超燃脂APP 浙ICP备2021003090号-2
 merach.com
-
 # 珠海太川云社区技术股份有限公司 粤ICP备10213128号
 taichuan.com
 taichuan.net
-
 # 中国石油支付宝小程序
 95504test.com
-
 # 北京鸿合智能系统股份有限公司
 hitevision-solutions.com
-
 # 捷顺科技
 jslife.net
-
 # 南海控股有限公司
 nanhaicorp.com
-
 # 深圳市金易桥科技有限公司 粤ICP备2023069807号
 ozonabc.com
-
 # 青萍科技（北京）有限公司深圳分公司 粤ICP备19156805号-1
 qingping.co
 cleargrass.com
-
 # 布丁猫(岩池科技)
 # 黑ICP备2024018807号
 bdmozon.com
@@ -1645,15 +1587,11 @@ bdmyandex.com
 # 黑ICP备2022002729号
 bdcat.top
 puddingcat.top
-
 # 海南东勤网络科技有限公司 琼ICP备18003843号
 qunliao.info
-
 # 陕ICP备2024035828号
 ao-x.ac.cn
-
 # 万集科技 京ICP备18036282号-2
 wanji.net.cn
-
 # 广州市雅望互联网服务有限公司
 gzyowin.com

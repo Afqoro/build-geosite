@@ -14,7 +14,6 @@ kaspersky.com.au
 kaspersky.com.br
 kaspersky.com.cn @cn
 kaspersky.com.hk
-kaspersky.com.hk
 kaspersky.com.pl
 kaspersky.com.tr
 kaspersky.com.tw
@@ -37,12 +36,10 @@ kaspersky.ro
 kaspersky.rs
 kaspersky.ru
 kaspersky.se
-
 full:activation-v2.kaspersky.com @cn
 full:activation-v2.geo.kaspersky.com @cn
 full:activate.activation-v2.kaspersky.com @cn
 full:refresh-bkg.activation-v2.kaspersky.com @cn
-
 full:crl.kaspersky.com @cn
 full:dc1.ksn.kaspersky-labs.com @cn
 full:dc1-cert.ksn.kaspersky-labs.com @cn

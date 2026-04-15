@@ -9,7 +9,6 @@ include:category-gov-ru
 include:category-medicine-ru
 include:category-retail-ru
 include:category-travel-ru
-
 # Russian companies
 include:carrotquest
 include:headhunter
@@ -18,7 +17,6 @@ include:mailru-group
 include:mindbox
 include:selectel
 include:yandex
-
 # Bank & Finance & Insurance & Securities
 include:category-bank-ru
 # Credit History Bureaus
@@ -40,7 +38,6 @@ nspk.ru
 # Tipping service
 netmonet.co
 tips.tips
-
 # Telecom operators
 beeline.ru
 dom.ru
@@ -50,7 +47,6 @@ rostelecom.ru
 rt.ru
 t2.ru
 tele2.ru
-
 ## Megafon
 inplat.ru
 megafon.com
@@ -61,12 +57,10 @@ report-megafon.ru
 scartel.ru
 yota.ru
 yotagamer.ru
-
 ### IDN ccTLD
 xn--80a9a4b.xn--p1ai # ёта.рф
 xn--80aj3b.xn--p1ai # ета.рф
 xn--80arpq.xn--p1ai # йота.рф
-
 # Other domains
 apptrackpets.com # Pet GPS tracker service (Yandex Cloud, reg.ru)
 gazfond-pn.ru    # Non-state pension fund GAZFOND pension savings
@@ -79,7 +73,6 @@ roistat.com @ads # Russian marketing company
 srv-hub.org      # Website buider
 t1.cloud         # Russian cloud storage provider
 taxsee.com       # Taxi for business (self-employed drivers)
-
 ## COMSS.ONE "Computer Security Software Russia"
 comss.club
 comss.info
@@ -90,7 +83,6 @@ comss.one
 comss.online
 comss.org
 comss.ru
-
 ## Genotek
 eligens.cl
 eligens.com.br
@@ -99,7 +91,6 @@ genetic-technologies.am
 genotek.am
 genotek.health
 genotek.ru
-
 ## Ideco, NGFW developer
 ideco.dev
 ideco.ru

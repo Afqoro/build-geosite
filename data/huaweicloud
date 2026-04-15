@@ -138,7 +138,6 @@ ru-northwest-201.myhuaweicloud.com @!cn     #俄罗斯-莫斯科二零一
 sa-brazil-1.myhuaweicloud.com @!cn          #拉美-圣保罗一
 tr-west-1.myhuaweicloud.com @!cn            #土耳其-伊斯坦布尔
 us-east-1.myhuaweicloud.com @!cn            #北美-亚特兰大-废弃
-
 # 华为云 CDN CNAME 域名，按 ICP 备案序号排列
 cdnhwchcg02.com
 cdnhwcurq03.com
@@ -236,7 +235,6 @@ cdnhwcaip122.cn
 cdnhwcwqz113.cn
 cdnhwcojn124.cn
 cdnhwcscc123.cn
-
 # 华为云关联域名，按 ICP 备案序号排列
 o7mu8.cn
 59bob.cn
@@ -275,7 +273,6 @@ cza84.cn
 8gcdp.cn
 kma1g.cn
 576nt.cn
-
 # regexp:.+\.cdnhwc([1-9]|10)\.(cn|com)$
 cdnhwc1.cn
 cdnhwc2.cn

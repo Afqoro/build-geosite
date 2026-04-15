@@ -20,7 +20,6 @@ domain:ms.vk.ru @ads
 domain:stats.vk-portal.net @ads
 domain:target.vk.com @ads
 domain:target.vk.ru @ads
-
 # CDNs
 cdn-vk.net
 cdn-vk.ru
@@ -44,12 +43,10 @@ vkuserlive.net
 vkuservideo.com
 vkuservideo.net
 vkuservideo.ru
-
 # VK Messenger
 vk.me
 vkmessenger.app
 vkmessenger.com
-
 # VK Pay
 vkpay.app
 vkpay.com

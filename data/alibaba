@@ -3,13 +3,10 @@ alibaba
 
 # All .alipay domains
 alipay
-
 # All .taobao domains
 taobao
-
 # All .tmall domains
 tmall
-
 include:9game
 include:alibabacloud
 include:aliyun
@@ -22,7 +19,6 @@ include:teambition
 include:uc
 include:umeng
 include:youku
-
 56che.com
 95095.com
 ali-health.com
@@ -120,7 +116,6 @@ yunos-inc.com
 yunos.com
 yushanfang.com
 zuodao.com
-
 # AliExpress
 ae-rus.net @!cn
 aedns.ru @!cn
@@ -129,16 +124,12 @@ aestatic.net @!cn
 aliexpress.com
 aliexpress.ru @!cn
 aliexpress-media.com
-
 # Alipay+
 alipayplus.com
-
 # AlipayHK
 alipay.hk @!cn
-
 # AlipayMO
 alipaymo.com @!cn
-
 # 盒马
 freshhema.com
 freshippo.com
@@ -146,21 +137,16 @@ hemamax.com
 hemaos.com
 hemashare.cn
 shyhhema.com
-
 # 蚂蚁财富
 antfortune.com
-
 # 蚂蚁基金
 fund123.cn
-
 # 蚂蚁集团
 antfin.com
 antgroup.com
 antgroup-inc.cn
-
 # 神马搜索
 sm.cn
-
 # 淘宝
 1688.com
 etao.com
@@ -182,12 +168,10 @@ tmall.com
 tmall.ru @!cn
 tmalltv.com
 tmjl.ai
-
 # 夸克
 cueme.cn
 myquark.cn
 quark.cn
-
 # 飞猪
 alitrip.com
 feizhu.cn
@@ -195,35 +179,26 @@ feizhu.com
 fliggy.com
 fliggy.hk @!cn
 iuynfg.com
-
 # 虾米音乐
 xiami.com
 xiami.fm
 xiami.net
-
 # 口碑
 koubei.com
-
 # 豌豆荚
 wandoujia.com
 wdjimg.com
-
 # PP助手
 25pp.com
-
 # 吱声网
 zhisheng.com
-
 # npmmirror 中国镜像站
 npmmirror.com
-
 # 闲鱼
 goofish.com
-
 # 考拉
 kaola.com
 kaolacdn.com
-
 # 瓴羊
 lydaas.cn
 lydaas.com
@@ -232,7 +207,6 @@ lydaas.net
 lydass.cn
 lydass.com.cn
 lydass.net
-
 # Ads/tracking
 a.alimama.cn @ads
 adash-c.m.taobao.com @ads

@@ -4,7 +4,6 @@ include:category-acg
 include:category-entertainment-ru
 include:category-games-!cn
 include:category-novel
-
 include:7tv
 include:abema
 include:amc
@@ -78,7 +77,6 @@ include:webnovel
 include:wwe
 include:youtube
 include:zeetv
-
 777tv.net
 blubrry.com
 buzzsprout.com
@@ -102,12 +100,10 @@ sendvid.com
 syosetu.com
 weverse.io
 yande.re
-
 # Apple Podcast
 amp-api.podcast.apple.com
 bag.itunes.apple.com
 bookeeper.itunes.apple.com
-
 # Entertainment oriented media
 # This section references the "Source Considerations" page on the Chinese Wikipedia:
 # - https://zh.wikipedia.org/wiki/WikiProject:电子游戏/来源考量

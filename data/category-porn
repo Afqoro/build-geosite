@@ -72,10 +72,8 @@ include:yunlaopo
 include:zhimeishe
 
 # The top domains of the pornographic website.
-
 adult
 porn
-
 02weqj32.com
 04647.club
 0cgdklr5sfwj.com
@@ -6020,13 +6018,9 @@ zzdh77.com
 zzdh808.com
 zzdh99.com
 zzgays.com
-
 # Full Domain Name
-
 full:anime-rule34-world.b-cdn.net
-
 # Internationalized Domain Name
-
 xn--096-4g6em5t.com
 xn--201-4g6em5t.com
 xn--202-4g6em5t.com
@@ -6049,9 +6043,7 @@ xn--uis17aj9kmuf.com
 xn--urs05q.jp
 xn--x-qeu1ji09tzlg.biz
 xn--x-qeu1ji09tzlg.net
-
 # Regular Expression
-
 regexp:(^|\.)[1-5]gaoap\.com$
 regexp:(^|\.)[1-9]+aipai\.(com|net)$
 regexp:(^|\.)[1-9]+zipai\.(com|net)$

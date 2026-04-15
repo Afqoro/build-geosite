@@ -5,10 +5,8 @@ include:yuewen
 
 # qq.中国
 qq.xn--fiqs8s
-
 # 腾讯.中国
 xn--r70as2s.xn--fiqs8s
-
 acimg.cn
 apcdns.net
 foxmail.com
@@ -48,13 +46,10 @@ wetvinfo.com @!cn
 wxcloudrun.com
 wxgateway.com
 wxlivecdn.com
-
 full:wetv.qq.com @!cn
-
 alloyteam.com
 imweb.io
 ivweb.io
-
 # 腾讯枫叶
 fyeds.com
 fyeds0.com
@@ -78,7 +73,6 @@ fymallqa3.com
 fymallqa4.com
 fymallqa7.com
 fymallqa9.com
-
 tdnsdl1.cn
 tdnsdl1.com.cn
 tdnsdl2.cn
@@ -89,7 +83,6 @@ tdnsdl4.cn
 tdnsdl4.com.cn
 tdnsdl5.cn
 tdnsdl5.com.cn
-
 # Ads/tracking
 ad.browser.qq.com @ads
 ad.qq.com @ads

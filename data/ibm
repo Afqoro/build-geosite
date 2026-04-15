@@ -2,13 +2,10 @@ include:hashicorp
 
 # All .ibm domains
 ibm
-
 # All .weatherchannel domains
 weatherchannel
-
 # All .weather domains
 weather
-
 appdomain.cloud
 bluemix.com
 bluemix.net

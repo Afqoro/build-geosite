@@ -108,7 +108,6 @@ unity3dcloud.cn @cn
 windowsazure.cn @cn
 windowsazure.com
 windowsazurestatus.cn @cn
-
 # regexp:.+\.azchcdn[a-s]\.com$ @cn
 azchcdna.com @cn
 azchcdnb.com @cn
@@ -129,17 +128,14 @@ azchcdnp.com @cn
 azchcdnq.com @cn
 azchcdnr.com @cn
 azchcdns.com @cn
-
 full:azure.microsoft.com
 full:azuremarketplace.microsoft.com
-
 # Azure DNS
 azure-dns.cn @cn
 azure-dns.com
 azure-dns.info
 azure-dns.net
 azure-dns.org
-
 # regexp:.+\.azure-dns-([1-9]|10)\.cn$ @cn
 azure-dns-1.cn @cn
 azure-dns-2.cn @cn

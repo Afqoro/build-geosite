@@ -132,7 +132,6 @@ whoerip.com
 whoisxmlapi.com
 wieistmeineip.de
 wtfismyip.com
-
 # Subdomains/internal api used for ip-geo-detect
 full:checkip.amazonaws.com
 full:checkip.dyndns.org
@@ -140,7 +139,6 @@ full:checkip.dyn.com
 full:ip.comss.net
 full:ipv4-check-perf.radar.cloudflare.com
 full:ipv6-check-perf.radar.cloudflare.com
-geoip.noc.gov.ru
 ip.hetzner.com
 ip.mail.ru
 ip.nic.ru

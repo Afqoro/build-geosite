@@ -9,7 +9,6 @@ include:itunes
 
 # All .apple domains
 apple
-
 apple.ae
 apple.at
 apple.be
@@ -103,7 +102,6 @@ apple.us
 apple.xn--czr694b # apple.商标
 apple.xn--fiqs8s # apple.中国
 apple.xyz
-
 # Apple Store
 aplestore.com
 apple-store.cn @cn
@@ -150,7 +148,6 @@ applestore.wang
 applestoreonline.com
 applestorepro.eu
 onlineapplestore.com
-
 # App Store
 app-store.wang
 appe-store.com
@@ -166,7 +163,6 @@ appstore.ph
 appstoreapple.cn @cn
 asto.re
 tvappstore.net
-
 # iMac
 apple-imac.com
 appleimac.com
@@ -181,7 +177,6 @@ imac.one
 imac.rs
 imacapple.com
 imacapplecomputer.com
-
 # iPad
 ebookforipad.com
 euroipad.com
@@ -207,7 +202,6 @@ ipadmini.com.lk
 ipadmini.lk
 ipadpro.buzz
 ukipad.com
-
 # iPhone
 appleiphone.hu
 appleiphone.net
@@ -267,7 +261,6 @@ iphonese.tv
 iphoneunlockimei.com
 iphonexs.tv
 onlyiphone5case.com
-
 # iPod
 aplleipods.com
 appleclassicipod.com
@@ -315,7 +308,6 @@ myipod.net
 offrezdesipods.com
 simplyipod.com
 wwwipodlounge.com
-
 # MacBook
 imacsources.com
 launchpad.wang
@@ -344,7 +336,6 @@ macbookpro.us
 macbookpros.com
 macbooksale.com
 wwwmacbookair.com
-
 # Apple Watch
 apple-watch.com.ru
 applewatch.hk
@@ -354,7 +345,6 @@ applewatch.wang
 applewatchedition.com
 applewatchseries3.net
 applewatchsport.com
-
 # Apple Music
 applemusic.berlin
 applemusic.co
@@ -366,7 +356,6 @@ applemusicconnect.com
 applemusicfestival.com
 musickit.net
 wwwapplemusic.com
-
 # Apple News
 apple.comscoreresearch.com
 apple.news
@@ -375,7 +364,6 @@ applenews.berlin
 applenews.hamburg
 applenews.tv
 applenewsformat.com
-
 # Apple Pay
 apple-pay.com
 apple-pay.rs
@@ -403,7 +391,6 @@ applepaysupplies.net
 applepaysupplies.tv
 applewallet.com
 applewallet.tv
-
 # iBook
 i-book.com
 i-book.net
@@ -413,32 +400,27 @@ ibook.eu
 ibook.net
 ibookpartner.com
 ibooksauthor.com
-
 # iPhoto
 iphoto.eu
 iphoto.no
 iphoto.se
 iphoto.wang
-
 # iMovie
 imovie.eu
 imoviegallery.com
 imoviestage.com
-
 # Apple Care
 applecare.berlin
 applecare.cc
 applecare.eu
 applecare.hamburg
 applecare.wang
-
 # macOS
 appledarwin.com
 appledarwin.net
 darwinsource.com
 darwinsource.org
 darwinsourcecode.com
-
 # Apple ID
 appleaccount.net
 appleid-applemx.com
@@ -451,7 +433,6 @@ appleid.hamburg
 appleid.hk
 ids-apple.com
 myappleid.com
-
 # Apple TV
 appletv.com
 appletv.fr
@@ -459,7 +440,6 @@ appletv.wang
 appletv4.cn @cn
 appletv4.com.cn @cn
 appletvapp.apple
-
 # Apple One
 appleone.audio
 appleone.blog
@@ -473,13 +453,10 @@ appleone.host
 appleone.space
 appleone.tech
 appleone.website
-
 # Shazam
 shazam.com
-
 # Apple Health Studies
 full:ingest.apple-studies.com  # 采集心率、运动、听力等传感器数据，以及用户填报的研究问卷，将其加密后上传至 Apple 后端
-
 # Others
 1to1computing.com.au
 1to1conference.com.au
@@ -741,12 +718,10 @@ xn--hxtr4rozx.xn--czr694b # 苹果店.商标
 xn--kput3imi374g.xn--hxt814e # 苹果手机.网店
 xn--ohq11k7pl25iyo8a.cn @cn # 苹果专卖店.cn
 xn--ruq8a011kt6y.xn--hxt814e # 苹果保修.网店
-
 full:apple.com.akadns.net
 full:configuration-lb.ls-apple.com.akadns.net
 full:push-apple.com.akadns.net
 courier-push-apple.com.akadns.net
-
 # Domains and services below are available in China mainland
 # Use in config file like this: "geosite:apple@cn"
 full:amp-api-edge-lb-cn.itunes-apple.com.akadns.net @cn
@@ -804,14 +779,12 @@ full:sync.itunes.apple.com @cn
 full:tf-feedback.itunes.apple.com @cn
 full:upp.itunes.apple.com @cn
 full:www.support.apple.com @cn
-
 # regexp:^a[1-5]\.mzstatic\.com$ @cn
 full:a1.mzstatic.com @cn
 full:a2.mzstatic.com @cn
 full:a3.mzstatic.com @cn
 full:a4.mzstatic.com @cn
 full:a5.mzstatic.com @cn
-
 # regexp:^cdn(-cn)?[1-4]?\.apple-mapkit\.com$ @cn
 full:cdn.apple-mapkit.com @cn
 full:cdn1.apple-mapkit.com @cn
@@ -823,21 +796,18 @@ full:cdn-cn1.apple-mapkit.com @cn
 full:cdn-cn2.apple-mapkit.com @cn
 full:cdn-cn3.apple-mapkit.com @cn
 full:cdn-cn4.apple-mapkit.com @cn
-
 # regexp:^cl[1-5]-cdn\.origin-apple\.com\.akadns\.net$ @cn
 full:cl1-cdn.origin-apple.com.akadns.net @cn
 full:cl2-cdn.origin-apple.com.akadns.net @cn
 full:cl3-cdn.origin-apple.com.akadns.net @cn
 full:cl4-cdn.origin-apple.com.akadns.net @cn
 full:cl5-cdn.origin-apple.com.akadns.net @cn
-
 # regexp:^cl[1-5]\.apple\.com$ @cn
 full:cl1.apple.com @cn
 full:cl2.apple.com @cn
 full:cl3.apple.com @cn
 full:cl4.apple.com @cn
 full:cl5.apple.com @cn
-
 # regexp:^is[1-5](-ssl)?\.mzstatic\.com$ @cn
 full:is1.mzstatic.com @cn
 full:is1-ssl.mzstatic.com @cn
@@ -849,7 +819,6 @@ full:is4.mzstatic.com @cn
 full:is4-ssl.mzstatic.com @cn
 full:is5.mzstatic.com @cn
 full:is5-ssl.mzstatic.com @cn
-
 # regexp:^s[1-5]?\.mzstatic\.com$ @cn
 full:s.mzstatic.com @cn
 full:s1.mzstatic.com @cn
@@ -857,12 +826,10 @@ full:s2.mzstatic.com @cn
 full:s3.mzstatic.com @cn
 full:s4.mzstatic.com @cn
 full:s5.mzstatic.com @cn
-
 # The rules below are from https://github.com/felixonmars/dnsmasq-china-list/blob/master/apple.china.conf
 # Revision: f6a2093b254a7d2baca959bd16581666ca394303
 # Duplicates removed
 # According to the consensus in #503, do not include the domain name apps.apple.com directly.
-# Use in config file like this: "geosite:apple@cn"
 full:adcdownload.apple.com @cn
 full:adcdownload.apple.com.akadns.net @cn
 full:amp-api-updates.apps.apple.com @cn
@@ -986,7 +953,6 @@ full:weatherkit.apple.com @cn
 full:www.apple.com @cn
 full:www.apple.com.edgekey.net.globalredir.akadns.net @cn
 full:xp.apple.com @cn
-
 # Ads/tracking
 advertising.apple.com @ads
 api-adservices.apple.com @ads

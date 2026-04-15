@@ -1,7 +1,6 @@
 # Entertainment & Videos & Games & Music & Podcasts
 
 include:category-games-cn
-
 include:aamgame
 include:acfun
 include:acplay
@@ -38,12 +37,10 @@ include:xiaoyuzhou
 include:ximalaya
 include:youku
 include:yuewen @-!cn
-
 # Android Emulator
 ldmnq.com
 lsplayer.com
 yeshen.com
-
 # 172Mix 舞曲音乐
 172mix.com
 # 17K小说
@@ -127,15 +124,12 @@ zhanqi.tv
 zhulang.com
 # 纵横小说
 zongheng.com
-
 # 娱乐资讯媒体
 # 该部分参考了中文维基百科的「来源考量」：
 # - https://zh.wikipedia.org/wiki/WikiProject:电子游戏/来源考量
 # - https://zh.wikipedia.org/wiki/WikiProject:ACG/來源考量
-
 include:tgbus
 include:vgtime
-
 ## 17173网
 17173.com
 ## 18183网

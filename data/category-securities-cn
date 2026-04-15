@@ -6,7 +6,6 @@ sse.com.cn
 sseinfo.com
 szse.cn
 cninfo.com.cn
-
 # Securities Company 证券公司
 include:hsbc-cn
 ajzq.com
@@ -105,7 +104,6 @@ zdzq.com.cn
 zszq.com
 ztfsec.com
 zts.com.cn
-
 # Public Fund Company 公募基金公司
 99fund.com
 abc-ca.com
@@ -162,7 +160,6 @@ ydamc.com
 yhfund.com.cn
 zhfund.com
 zofund.com
-
 # Fund Sales 基金销售公司
 5ifund.com
 fund123.cn

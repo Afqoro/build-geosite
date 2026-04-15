@@ -16,17 +16,14 @@
 # saxo  # Saxo Bank A/S
 # tv  # Tuvalu
 # xn--j6w193g  # 香港 Hong Kong SAR, People's Republic of China
-
 include:google-registry-tld
 include:tld-ru
-
 # Used by U.S. federal government
 gov
 # Used by U.S. DoD.
 mil
 # Used by U.S. Higher Education.
 edu
-
 # ccTLD
 ac # Ascension Island
 ad # Andorra
@@ -268,14 +265,12 @@ yt # Mayotte
 za # South Africa
 zm # Zambia
 zw # Zimbabwe
-
 # Athletics Domains
 afl # Australian Football League
 mlb # MLB Advanced Media DH, LLC
 nba # National Basketball Association
 nfl # National Football League
 nra # National Rifle Association
-
 # Business Products & Services Domains
 crs # Federated Co operatives Limited
 dnp # Dai Nippon Printing Co., Ltd.
@@ -291,7 +286,6 @@ sap # SAP AG
 seek # Seek Limited
 wtc # World Trade Centers Association, Inc.
 xerox # Business Products Services Domains
-
 # Fashion Domains
 athleta # The Gap, Inc.
 bloomberg # Bloomberg IP Holdings LLC
@@ -308,15 +302,12 @@ nike # Nike, Inc.
 omega # The Swatch Group Ltd
 redstone # Redstone Haute Couture Co., Ltd.
 swatch # The Swatch Group Ltd
-
 # Geographic top-level domains
-
 ## Africa
 africa     # Africa
 capetown   # Cape Town, South Africa
 durban     # Durban, South Africa
 joburg     # Johannesburg, South Africa
-
 ## Asia
 abudhabi   # Abu Dhabi
 arab       # Leagueof Arab States
@@ -330,7 +321,6 @@ ryukyu     # Ryukyu Islands, Japan
 taipei     # Taipei, Republic of China (Taiwan)
 tokyo      # Tokyo, Japan
 yokohama   # Yokohama, Japan
-
 ## Europe
 alsace     # Alsace, France
 amsterdam  # Amsterdam, Netherlands
@@ -368,23 +358,19 @@ vlaanderen # Flanders, Belgium
 wales      # Wales, United Kingdom
 wien       # Vienna, Austria
 zuerich    # Zurich, Switzerland
-
 ## North America
 boston     # Boston, Massachusetts, United States of America
 miami      # Miami, Florida, United States of America
 nyc        # New York City, New York, United States of America
 quebec     # Quebec, Canada
 vegas      # Las Vegas, Nevada, United States of America
-
 ## Oceania
 kiwi       # New Zealanders
 melbourne  # Melbourne, Australia
 sydney     # Sydney, Australia
-
 ## South America
 lat        # Latin America
 rio        # Rio de Janeiro, Brazil
-
 # Health & Wellness Domains
 aarp # Health Wellness Domains
 abbott # Abbott Laboratories
@@ -396,7 +382,6 @@ dabur # Dabur India Limited
 fresenius # Fresenius Immobilien-Verwaltungs-GmbH
 jnj # Johnson & Johnson Services, Inc.
 sanofi # Health Wellness Domains
-
 # Industrial Domains
 aeg # Aktiebolaget Electrolux
 airbus # Airbus S.A.S.
@@ -437,7 +422,6 @@ weber # Saint-Gobain Weber SA
 weir # Weir Group IP Limited
 woodside # Woodside Petroleum Limited
 zara # Inditex, SA
-
 # Miscellaneous Domains
 africamagic # Electronic Media Network Limited
 agakhan # Aga Khan Foundation
@@ -471,13 +455,11 @@ vodka # Alcohol
 wine # Alcohol
 wme # William Morris Endeavor Entertainment, LLC
 wtf # What the fuck
-
 # Religion
 bible # Bible
 catholic # Catholic
 ismaili # a Shiite sect
 xn--mgbi4ecexp # Arabic for Catholic
-
 # Research & Science Domains
 cern # European Organization for Nuclear Research
 emerck # Merck
@@ -492,21 +474,17 @@ stada # STADA Arzneimittel AG
 teva # Teva Pharmaceutical Industries Limited
 toray # Toray Industries, Inc.
 weather # The Weather Channel LLC
-
 # Sex & Porn
 adult # Adult content
 porn # Pornographic website
 sex # Sex
 sexy # Sexy
 xxx # Pornographic website
-
 # Shipping & Delivery Domains
 auspost # Australian Postal Corporation
 dhl # Deutsche Post AG
 fedex # Federal Express Corporation
-
 # Top domain of Country or Region (Internationalized Domain Name)
-
 xn--lgbbat1ad8j  #  الجزائر Algeria
 xn--y9a3aq  #  հայ Armenia
 xn--mgbcpq6gpa1a  #  البحرين Bahrain
@@ -571,7 +549,6 @@ xn--pgbs0dh  #  تونس Tunisia
 xn--j1amh  #  укр Ukraine
 xn--mgbaam7a8h  #  امارات United Arab Emirates
 xn--mgb2ddes  #  اليمن Yemen
-
 # Automotive Domains
 aaa # American Automobile Association
 audi # Automotive Domains
@@ -604,7 +581,6 @@ tatamotors # Tata Motors Ltd
 toyota # Automotive Domains
 tvs # T V Sundram Iyengar & Sons Limited
 volvo # Volvo Cars
-
 # Computers & Electronics Domains
 android # Google
 apple # Apple Inc.
@@ -625,7 +601,6 @@ sharp # Sharp Corporation
 sony # Computers Electronics Domains
 toshiba # Toshiba Corporation
 yodobashi # Yodobashi Camera Co., LTD
-
 # Financial Services Domains
 allfinanz # Allfinanz Deutsche Vermögensberatung Aktiengesellschaft
 ally # Ally Financial Inc.
@@ -681,13 +656,11 @@ ubs # UBS AG
 vanguard # The Vanguard Group, Inc.
 visa # Visa International Service Association
 wolterskluwer # Wolters Kluwer N.V.
-
 # Home & Garden Domains
 aquarelle # Aquarelle.com
 diy # Lifestyle Domain Holdings, Inc
 homedepot # Homer TLC, Inc.
 homegoods # The TJX Companies, Inc.
-
 # Insurance Domains
 aig # American International Group, Inc.
 allstate # Allstate Fire and Casualty Insurance Company
@@ -706,7 +679,6 @@ travelersinsurance # Travelers TLD, LLC
 travelers # Travelers TLD, LLC
 trv # Travelers TLD, LLC
 vig # Vienna Insurance Group
-
 # Music & Entertainment Domains
 beats # Beats Electronics, LLC
 blockbuster # Dish DBS Corporation
@@ -715,7 +687,6 @@ playstation # Sony
 tab # Tabcorp Holdings Limited
 williamhill # William Hill Organization Limited
 xbox # Microsoft
-
 # Retail Domains
 asda # Wal-Mart Stores, Inc.
 george # Wal-Mart Stores, Inc.
@@ -731,7 +702,6 @@ tjmaxx # The TJX Companies, Inc.
 tjx # The TJX Companies, Inc.
 tkmaxx # The TJX Companies, Inc.
 walmart # Wal-Mart Stores, Inc.
-
 # Tech Domains
 abb # ABB Ltd.
 accenture # Accenture Global Services Limited
@@ -826,7 +796,6 @@ clinique # ELC Online Inc.
 lamer # ELC Online Inc.
 natura # Natura Cosmeticos S.A.
 origins # ELC Online Inc.
-
 # Consumables Domains
 barefoot # Gallo Vineyards, Inc.
 cuisinella # SALM S.A.S.
@@ -835,7 +804,6 @@ fage # FAGE Dairy Industry S.A.
 ferrero # Ferrero Trading Lux S.A.
 food # Scripps Networks Interactive, Inc
 gallo # Gallo Vineyards, Inc.
-
 # Full - IDN Domains
 xn--5su34j936bgsg # .香格里拉 Shangri-La International Hotel Management Limited
 xn--b4w605ferd # .淡马锡 Temasek Holdings Limtied
@@ -851,7 +819,6 @@ xn--ngbe9e0a # .بيتك Kuwait Finance House
 xn--qcka1pmc # .グーグル Google
 xn--w4r85el8fhu5dnra # .嘉里大酒店 Kerry Trading Co. Limited
 xn--w4rs40l # .嘉里 Kerry Trading Co. Limited
-
 # Hotel & Travel Domains
 caravan # Caravan International, Inc.
 cipriani # Hotel Cipriani
@@ -865,14 +832,11 @@ marriott # Marriott Worldwide Corporation
 shangrila # Shangri-La International Hotel Management Limited
 tui # TUI AG
 viking # Viking River Cruises
-virgin # Virgin Enterprises Limited
-
 # Land & Buildings Domains
 able # Able Inc.
 cbre # CBRE, Inc.
 chintai # Chintai Corporation
 lefrak # LeFrak Organization, Inc.
-
 # News & Media Domains
 abc #  American Broadcasting Companies, Inc.
 arte #  Association Relative à la Télévision Européenne
@@ -891,7 +855,6 @@ sbs #  Special Broadcasting Service Corporation
 seven #  Seven West Media Ltd
 sky #  Sky IP International Ltd
 weatherchannel #  The Weather Channel, LLC
-
 # School & Training Domains
 bauhaus # Werkhaus GmbH
 latrobe # La Trobe University

@@ -7,19 +7,14 @@ include:wholefoodsmarket
 
 # All .amazon domains
 amazon
-
 # All .アマゾン domains
 xn--cckwcxetd
-
 # All .亚马逊 domains
 xn--jlq480n2rg
-
 # All .yamaxun domains
 yamaxun
-
 # All .zappos domains
 zappos
-
 a2z.com
 aboutamazon.cn @cn
 aboutamazon.co.uk
@@ -122,19 +117,14 @@ ueberamazon.de
 yamaxun.cn @cn
 yamaxun.com
 z.cn @cn
-
 # Alexa
 alexa.com
-
 # Audible
 audible.com
-
 # CreateSpace
 createspace.com
-
 full:images-cn.ssl-images-amazon.com @cn
 full:images-cn-8.ssl-images-amazon.com @cn
-
 # Ads/tracking
 amazon-adsystem.com @ads
 serving-sys.com @ads

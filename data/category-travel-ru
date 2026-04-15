@@ -3,13 +3,10 @@ include:aviasales
 
 # BlaBlaCar
 blablacar.ru
-
 # Bus stations
 avtovokzaly.ru
-
 # Ostrovok
 ostrovok.ru
-
 # Public transport and ticketing
 include:mosmetro
 full:bilet.nspk.ru
@@ -19,16 +16,12 @@ full:podorozhnik.spb.ru
 full:transport.mos.ru
 gorodpay.ru
 rrtp.ru
-
 # Russian Railways
 rzd-bonus.ru
 rzd.ru
-
 # Tutu
 tutu.ru
-
 # Yandex Rent
 full:arenda.yandex.ru
-
 # Yandex Taxi
 full:taxi.yandex.ru

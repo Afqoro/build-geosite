@@ -5,7 +5,6 @@ trbcdn.net
 
 # Information about films and series
 kinorium.com
-
 # Streaming services for watching TV series and movies
 include:kinopoisk
 include:okko
@@ -19,6 +18,5 @@ smotreshka.tv
 start.ru
 tvigle.ru
 viju.ru
-
 # Video hosting
 include:rutube

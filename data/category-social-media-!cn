@@ -10,10 +10,8 @@ include:ok
 include:threads
 include:twitter
 include:vk
-
 onlyfans.com
 truthsocial.com
-
 # Mastodon
 # * We can not make a comprehensive domain list of all Mastodon instances.
 # * Many more dynamic/random instance domains are not listed here.

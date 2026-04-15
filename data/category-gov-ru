@@ -5,14 +5,11 @@ gov.ru
 # Federal Public Services
 gosuslugi.ru
 gu-st.ru
-
 # Federal Healthcare Services
 emias.info
 mgfoms.ru
-
 # Federal Educational Services
 edu.ru
-
 # Other Federal Resources
 cbr.ru          # Central Bank of Russia
 cikrf.ru        # Central Electoral Commission of the Russian Federation
@@ -24,7 +21,6 @@ kremlin.ru      # Online representation of the President of Russia
 mil.ru          # Ministry of Defense of the Russian Federation
 nalog.ru        # Federal Tax Service
 xn--80ajghhoc2aj1c8b.xn--p1ai # Honest Sign - State Labeling System
-
 #
 # Regional sites and Public Services
 # Reminder on federal subjects naming:
@@ -33,18 +29,14 @@ xn--80ajghhoc2aj1c8b.xn--p1ai # Honest Sign - State Labeling System
 # | Territory           | Krai                  | Край              |
 # | Autonomous Region,  | Avtonomniy Okrug      | Автономный Округ  |
 # | Autonomous Area     |                       |                   |
-#
 # Moscow, St. Petersburg, Sevastopol — are separate federal subjects,
 # meaning that e.g. Moscow is not part of Moscow Region.
-#
-
 # Federal Cities (Cities of Federal Importance)
 mos.ru          # Moscow
 mosreg.ru       # Moscow Region
 spb.ru          # St. Petersburg
 sevastopol.ru   # Sevastopol
 sev.ru          # Sevastopol
-
 # Republics
 adygeya.ru      # Republic of Adygea
 bashkiria.ru    # Republic of Bashkortostan
@@ -73,7 +65,6 @@ udmurtia.ru     # Republic of Udmurtia
 ulan-ude.ru     # Ulan-Ude City, Republic of Buryatia
 vladikavkaz.ru  # Vladikavkaz City, Republic of North Ossetia-Alania
 yakutia.ru      # Republic of Yakutia
-
 # Territories (Krai)
 altai.ru        # Altai Territory
 chita.ru        # Chita City, Zabaykalsky Territory
@@ -89,7 +80,6 @@ stavropol.ru    # Stavropol Territory
 stv.ru          # Stavropol Territory
 vl.ru           # Vladivostok City, Primorye Territory
 vladivostok.ru  # Vladivostok City, Primorye Territory
-
 # Regions / Provinces (Oblast)
 amur.ru         # Amur Region
 arkhangelsk.ru  # Arkhangelsk Region
@@ -151,12 +141,10 @@ vrn.ru          # Voronezh Region
 vyatka.ru       # Kirov Region
 yaroslavl.ru    # Yaroslavl Region
 yuzhno-sakhalinsk.ru # Yuzhno-Sakhalinsk City, Sakhalin Region
-
 # Autonomous areas
 chukotka.ru     # Chukotka Autonomous Area
 jamal.ru        # Yamal-Nenets Autonomous Area
 surgut.ru       # Khanty-Mansi Autonomous Area – Yugra
 yamal.ru        # Yamal-Nenets Autonomous Area
-
 # Regional health services
 zdrav10.ru      # Republic of Karelia

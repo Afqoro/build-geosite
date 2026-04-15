@@ -2,7 +2,6 @@ include:zuoyebang
 
 # All .baidu domains
 baidu
-
 91.com
 aipage.com
 antpcdn.com
@@ -68,7 +67,6 @@ xdrtc.com
 xianfae.com
 xiaodutv.com
 yoojia.com
-
 # 度小满
 duxiaoman-int.com
 duxiaoman.com
@@ -83,7 +81,6 @@ dxmpay.com
 dxmstatic.com
 dxmyqh.com
 paydxm.com
-
 # Ads/tracking
 adscdn.baidu.com @ads
 adx.xiaodutv.com @ads
