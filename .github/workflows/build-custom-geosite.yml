@@ -423,20 +423,57 @@ jobs:
           ls -lh release/geosite.dat
           sha256sum release/geosite.dat
 
-      - name: Commit updated lists back to repository
+      - name: Publish generated files to generated branch
         shell: bash
         run: |
+          set -e
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data category generated-custom
+          mkdir -p /tmp/generated-publish
+          cp -r data /tmp/generated-publish/
+          cp -r generated-custom /tmp/generated-publish/
+          cp -r release /tmp/generated-publish/
+          cp category /tmp/generated-publish/category
+
+          current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+          if git ls-remote --exit-code --heads origin generated; then
+            git fetch origin generated
+            git checkout generated
+            git reset --hard origin/generated
+          else
+            git checkout --orphan generated
+            git rm -rf . || true
+          fi
+
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name '.git' \
+            -exec rm -rf {} +
+
+          cp -r /tmp/generated-publish/data .
+          cp -r /tmp/generated-publish/generated-custom .
+          cp -r /tmp/generated-publish/release .
+          cp /tmp/generated-publish/category .
+
+          cat > README.md <<'EOF'
+          # Generated output
+
+          Branch ini berisi file hasil generate otomatis dari workflow.
+          Jangan edit manual di branch ini.
+          EOF
+
+          git add data generated-custom release category README.md
 
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No changes to commit on generated branch."
           else
             git commit -m "chore: update generated domain lists"
-            git push
+            git push origin generated
           fi
+
+          git checkout "$current_branch"
 
       - name: Upload geosite artifact
         uses: actions/upload-artifact@v4
