@@ -476,6 +476,34 @@ jobs:
           cd "$MAIN_REPO"
           git worktree remove "$BRANCH_DIR" --force
 
+      - name: Publish geosite.dat to external repo
+        shell: bash
+        env:
+          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          TARGET_REPO="https://x-access-token:${TARGET_REPO_TOKEN}@github.com/GboyGud/geosite--geoip-publish.git"
+          TARGET_DIR="/tmp/geosite-external"
+
+          rm -rf "$TARGET_DIR"
+          git clone "$TARGET_REPO" "$TARGET_DIR"
+
+          cp release/geosite.dat "$TARGET_DIR/geosite.dat"
+
+          cd "$TARGET_DIR"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add geosite.dat
+
+          if git diff --cached --quiet; then
+            echo "No changes to publish to external repo."
+          else
+            git commit -m "update geosite.dat"
+            git push origin HEAD
+          fi
+          
       - name: Upload geosite artifact
         uses: actions/upload-artifact@v4
         with:
