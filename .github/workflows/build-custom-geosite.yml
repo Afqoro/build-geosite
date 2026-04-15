@@ -336,31 +336,73 @@ jobs:
 
           targets = ["my-custom", "generated-custom", "data"]
           exact_remove = {"bit.ly", "localhost"}
+          filter_only_for = {
+              "ads-customku",
+              "mahavpn-antiscam",
+              "mahavpn-d3ward",
+              "mahavpn-oisd-big",
+              "mahavpn-oisd-nsfw",
+              "mahavpn-small-block",
+              "mahavpn-adaway",
+          }
+
+          total_duplicates_removed = 0
+          total_exact_removed = 0
+          processed_files = 0
 
           for folder in targets:
               p = Path(folder)
               if not p.exists():
-                continue
+                  continue
 
-              for file in p.iterdir():
+              print(f"== Folder: {folder} ==")
+
+              for file in sorted(p.iterdir()):
                   if not file.is_file():
                       continue
 
+                  processed_files += 1
                   seen = set()
                   output = []
 
-                  for line in file.read_text(encoding="utf-8", errors="ignore").splitlines():
-                      original = line
+                  duplicates_removed = 0
+                  exact_removed = 0
+
+                  lines = file.read_text(encoding="utf-8", errors="ignore").splitlines()
+
+                  for line in lines:
                       stripped = line.strip()
 
-                      if stripped in exact_remove:
+                      if file.name in filter_only_for and stripped in exact_remove:
+                          exact_removed += 1
                           continue
 
-                      if original not in seen:
-                          seen.add(original)
-                          output.append(original)
+                      if line in seen:
+                          duplicates_removed += 1
+                          continue
+
+                      seen.add(line)
+                      output.append(line)
 
                   file.write_text("\n".join(output) + ("\n" if output else ""), encoding="utf-8")
+
+                  total_duplicates_removed += duplicates_removed
+                  total_exact_removed += exact_removed
+
+                  if duplicates_removed or exact_removed:
+                      print(
+                          f"{file}: "
+                          f"duplicate_removed={duplicates_removed}, "
+                          f"exact_removed={exact_removed}, "
+                          f"final_lines={len(output)}"
+                      )
+
+              print()
+
+          print("== Dedup summary ==")
+          print(f"processed_files={processed_files}")
+          print(f"total_duplicates_removed={total_duplicates_removed}")
+          print(f"total_exact_removed={total_exact_removed}")
           PY
     
       - name: Preview suspicious wildcard lines
