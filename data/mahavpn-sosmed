@@ -1,0 +1,143 @@
+# category-meta
+include:facebook
+include:facebook-dev
+include:instagram
+include:messenger
+include:oculus
+include:threads
+meta.ai
+meta.com
+# category-communication
+include:clubhouse
+include:discord
+include:freenode
+include:intercom
+include:keybase
+include:line
+include:matrix
+include:signal
+include:slack
+include:category-social-media-!cn
+include:category-forums
+include:vk
+include:pinterest
+include:linkedin
+include:flickr
+include:douyu
+# Instagram
+cdninstagram.com
+instagram.com
+keyword:instagram
+# Facebook
+messenger.com
+facebook.com
+facebook.net
+fb.com
+fb.me
+fbaddins.com
+fbcdn.net
+fbsbx.com
+fbworkmail.com
+keyword:.facebook.
+facebookmail.com
+keyword:xx.fbcdn.net
+keyword:fna.fbcdn.net
+accountkit.com
+faacebook.com
+facebbook.com
+facebook-dns.com
+facebook-hardware.com
+facebook.co
+facebook.com.au
+facebook.com.mx
+facebook.it
+facebookcareers.com
+facebookenterprise.com
+facebookrecruiting.com
+facebookstudy.com
+facebookvirtualassistant.com
+fb.audio
+fb.gg
+fb.watch
+fbe2e.com
+fbinfra.net
+fbpigeon.com
+fbthirdpartypixel.com
+fbwat.ch
+internet.org
+m-freeway.com
+parse.com
+wit.ai
+keyword:m.me
+msngr.com
+# Line
+lin.ee
+line.me
+line.naver.jp
+line-apps.com
+line-cdn.net
+line-scdn.net
+nhncorp.jp
+naver.jp
+# Twitter
+pscp.tv
+periscope.tv
+t.co
+twimg.co
+twimg.com
+twitpic.com
+twitter.com
+vine.co
+keyword:twitter
+twttr.net
+twttr.com
+twitter.jp
+keyword:twimg
+keyword:twitpic
+ads-twitter.com
+tellapart.com
+tweetdeck.com
+twimg.org
+twitterinc.com
+twitteroauth.com
+twitterstat.us
+twtrdns.net
+# > Badoo
+badoo.app
+badoo.com
+badoo.com.ru
+badoocdn.com
+bumble.com
+# > Bitmoji
+bitmoji.com
+# > Douyin
+douyin.com
+douyincdn.com
+douyinliving.com
+douyinpic.com
+douyinstatic.com
+douyinvod.com
+# > Kwai
+kwai-pro.com
+kwai.com
+kwai.net
+kwaicdn.com
+helo.com
+snackvideo.in
+snackvideo.com
+uvfuns.com
+myqcloud.com
+# > okcupid
+okcupid.com
+# > openweb
+openweb.com
+spot.im
+# > Tieba
+tieba.baidu.com
+tieba.com
+# > Tinder
+gotinder.com
+tinder.com
+tindersparks.com
+# > Tuenti
+tuenti.com
