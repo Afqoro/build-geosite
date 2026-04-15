@@ -431,20 +431,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          MAIN_REPO="$GITHUB_WORKSPACE"
           PUBLISH_DIR="/tmp/generated-publish"
           BRANCH_DIR="/tmp/generated-branch"
 
           rm -rf "$PUBLISH_DIR" "$BRANCH_DIR"
           mkdir -p "$PUBLISH_DIR"
 
-          cp -r data "$PUBLISH_DIR/"
-          cp -r generated-custom "$PUBLISH_DIR/"
-          cp -r release "$PUBLISH_DIR/"
-          cp category "$PUBLISH_DIR/category"
+          cp -r "$MAIN_REPO/data" "$PUBLISH_DIR/"
+          cp -r "$MAIN_REPO/generated-custom" "$PUBLISH_DIR/"
+          cp -r "$MAIN_REPO/release" "$PUBLISH_DIR/"
+          cp "$MAIN_REPO/category" "$PUBLISH_DIR/category"
 
-          git fetch origin generated
-
-          git worktree add "$BRANCH_DIR" origin/generated
+          git -C "$MAIN_REPO" fetch origin generated
+          git -C "$MAIN_REPO" worktree add "$BRANCH_DIR" origin/generated
 
           cd "$BRANCH_DIR"
 
@@ -473,7 +473,7 @@ jobs:
             git push origin HEAD:generated
           fi
 
-          cd /
+          cd "$MAIN_REPO"
           git worktree remove "$BRANCH_DIR" --force
 
       - name: Upload geosite artifact
