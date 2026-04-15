@@ -328,6 +328,41 @@ jobs:
                       target_path.write_text("\n".join(new_lines) + ("\n" if new_lines else ""), encoding="utf-8")
           PY
     
+      - name: Deduplicate custom list lines
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          targets = ["my-custom", "generated-custom", "data"]
+          exact_remove = {"bit.ly", "localhost"}
+
+          for folder in targets:
+              p = Path(folder)
+              if not p.exists():
+                continue
+
+              for file in p.iterdir():
+                  if not file.is_file():
+                      continue
+
+                  seen = set()
+                  output = []
+
+                  for line in file.read_text(encoding="utf-8", errors="ignore").splitlines():
+                      original = line
+                      stripped = line.strip()
+
+                      if stripped in exact_remove:
+                          continue
+
+                      if original not in seen:
+                          seen.add(original)
+                          output.append(original)
+
+                  file.write_text("\n".join(output) + ("\n" if output else ""), encoding="utf-8")
+          PY
+    
       - name: Preview suspicious wildcard lines
         shell: bash
         run: |
