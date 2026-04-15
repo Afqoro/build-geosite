@@ -473,9 +473,6 @@ jobs:
             git push origin HEAD:generated
           fi
 
-          cd "$MAIN_REPO"
-          git worktree remove "$BRANCH_DIR" --force
-
       - name: Upload geosite artifact
         uses: actions/upload-artifact@v4
         with:
