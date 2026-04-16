@@ -485,7 +485,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          TARGET_REPO="https://x-access-token:${TARGET_REPO_TOKEN}@github.com/GboyGud/geosite--geoip-publish.git"
+          TARGET_REPO="https://x-access-token:${TARGET_REPO_TOKEN}@github.com/GboyGud/geosite-geoip-publish.git"
           TARGET_DIR="/tmp/geosite-external"
 
           rm -rf "$TARGET_DIR"
