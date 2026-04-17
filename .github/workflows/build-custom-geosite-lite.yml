@@ -1,0 +1,541 @@
+name: Build Custom Geosite Lite
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 1 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Build dlc binary
+        run: |
+          go build -v -o dlc .
+
+      - name: Prepare directories
+        run: |
+          mkdir -p generated-custom
+          mkdir -p release
+
+      - name: Fetch remote lists and write into generated-custom
+        shell: bash
+        run: |
+          python <<'PY'
+          import re
+          import requests
+          from pathlib import Path
+
+          ROOT = Path(".")
+          OUT = ROOT / "generated-custom"
+          OUT.mkdir(exist_ok=True)
+
+          def write_lines(path: Path, lines):
+              cleaned = []
+              seen = set()
+              for line in lines:
+                  line = line.strip().lower()
+                  if not line:
+                      continue
+                  if line.startswith("#"):
+                      continue
+                  line = re.sub(r'[\s\$\|\^]+$', '', line)
+                  if not re.fullmatch(r"[a-z0-9.-]+", line):
+                      continue
+                  if line.startswith(".") or line.endswith("."):
+                      continue
+                  if ".." in line:
+                      continue
+                  if line not in seen:
+                      seen.add(line)
+                      cleaned.append(line)
+              path.write_text("\n".join(cleaned) + ("\n" if cleaned else ""), encoding="utf-8")
+
+          def fetch_text(url, timeout=60):
+              r = requests.get(url, timeout=timeout)
+              r.raise_for_status()
+              return r.text
+
+          def parse_dnsmasq_server(text):
+              out = []
+              for line in text.splitlines():
+                  m = re.match(r"^server=/([^/]+)/", line.strip())
+                  if m:
+                      out.append(m.group(1))
+              return out
+
+          def parse_hosts_second_column(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#"):
+                      continue
+                  parts = line.split()
+                  if len(parts) >= 2:
+                      out.append(parts[1])
+              return out
+
+          def parse_plain_first_column(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#"):
+                      continue
+                  out.append(line.split()[0])
+              return out
+
+          def parse_d3ward_hosts(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if line.startswith("0.0.0.0 "):
+                      parts = line.split()
+                      if len(parts) >= 2:
+                          out.append(parts[1])
+              return out
+
+          def parse_adblock_domains(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if "/" in line:
+                      continue
+                  if line.startswith("||") and "^" in line:
+                      domain = line.split("^")[0][2:].strip()
+                      domain = domain.rstrip("$|")
+                      out.append(domain)
+              return out
+
+          sources = [
+              ("mahavpn-small-block", "https://small.oisd.nl/dnsmasq", parse_dnsmasq_server),
+              ("mahavpn-d3ward", "https://raw.githubusercontent.com/d3ward/toolz/master/src/d3host.txt", parse_d3ward_hosts),
+              ("mahavpn-doh", "https://raw.githubusercontent.com/malikshi/dns_ip/main/domains-doh.txt", parse_plain_first_column),
+              ("mahavpn-malicious", "https://raw.githubusercontent.com/elliotwutingfeng/Inversion-DNSBL-Blocklists/main/Google_hostnames_light.txt", parse_plain_first_column),
+              ("mahavpn-phishing", "https://phishing.army/download/phishing_army_blocklist_extended.txt", parse_plain_first_column),
+              ("mahavpn-adaway", "https://adaway.org/hosts.txt", parse_hosts_second_column),
+              ("mahavpn-whatsapp-new", "https://blocklistproject.github.io/Lists/alt-version/whatsapp-nl.txt", parse_plain_first_column),
+          ]
+
+          for filename, url, parser in sources:
+              print(f"[FETCH] {filename} <- {url}")
+              text = fetch_text(url)
+              lines = parser(text)
+              write_lines(OUT / filename, lines)
+
+          adblock_urls = [
+              "https://easylist.to/easylist/easylist.txt",
+              "https://filters.adtidy.org/extension/ublock/filters/3.txt",
+          ]
+
+          ads_customku = []
+          for url in adblock_urls:
+              print(f"[FETCH] ads-customku <- {url}")
+              text = fetch_text(url)
+              ads_customku.extend(parse_adblock_domains(text))
+          write_lines(OUT / "ads-customku", ads_customku)
+
+          # gabungkan malicious ke small-block
+          small_block = (OUT / "mahavpn-small-block").read_text(encoding="utf-8").splitlines()
+          malicious = (OUT / "mahavpn-malicious").read_text(encoding="utf-8").splitlines()
+          write_lines(OUT / "mahavpn-small-block", small_block + malicious)
+
+          # gabungkan whatsapp-new ke whatsapp lama dari repo jika ada
+          existing_whatsapp = Path("my-custom/mahavpn-whatsapp")
+          old_lines = existing_whatsapp.read_text(encoding="utf-8").splitlines() if existing_whatsapp.exists() else []
+          new_lines = (OUT / "mahavpn-whatsapp-new").read_text(encoding="utf-8").splitlines()
+          write_lines(OUT / "mahavpn-whatsapp", old_lines + new_lines)
+          (OUT / "mahavpn-whatsapp-new").unlink(missing_ok=True)
+          PY
+
+      - name: Normalize manual custom files safely
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          ROOT = Path("my-custom")
+          preserve_prefixes = ("regexp:", "keyword:", "include:")
+
+          for path in ROOT.glob("*"):
+              if not path.is_file():
+                  continue
+
+              lines = path.read_text(encoding="utf-8").splitlines()
+              out = []
+              seen_domains = set()
+
+              for line in lines:
+                  raw = line.strip()
+
+                  if not raw:
+                      continue
+
+                  if raw.startswith("#"):
+                      out.append(raw)
+                      continue
+
+                  lowered = raw.lower()
+
+                  if lowered.startswith(preserve_prefixes):
+                      out.append(lowered)
+                      continue
+
+                  if lowered.startswith("*."):
+                      lowered = lowered[2:]
+
+                  if lowered not in seen_domains:
+                      seen_domains.add(lowered)
+                      out.append(lowered)
+
+              path.write_text("\n".join(out) + "\n", encoding="utf-8")
+          PY
+    
+      - name: Copy manual custom files into data
+        shell: bash
+        run: |
+          for file in my-custom/*; do
+            [ -f "$file" ] || continue
+            cp "$file" "data/$(basename "$file")"
+          done
+
+      - name: Copy generated files into data
+        shell: bash
+        run: |
+          for file in generated-custom/*; do
+            [ -f "$file" ] || continue
+            cp "$file" "data/$(basename "$file")"
+          done
+
+      - name: Remove excluded lists for lite version
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          EXCLUDED=(
+            "mahavpn-oisd-big"
+            "mahavpn-oisd-nsfw"
+            "mahavpn-antiscam"
+          )
+
+          for name in "${EXCLUDED[@]}"; do
+            rm -f "generated-custom/$name"
+            rm -f "data/$name"
+          done
+
+          if [ -f category ]; then
+            tmpfile="$(mktemp)"
+            grep -vxF "mahavpn-oisd-big" category \
+              | grep -vxF "mahavpn-oisd-nsfw" \
+              | grep -vxF "mahavpn-antiscam" > "$tmpfile" || true
+            mv "$tmpfile" category
+          fi
+
+          echo "=== excluded lists removed for lite ==="
+          ls -lah generated-custom || true
+          echo
+          ls -lah data | grep 'mahavpn\|ads-customku' || true
+          
+      - name: Ensure category entries exist
+        shell: bash
+        run: |
+          for file in my-custom/* generated-custom/*; do
+            [ -f "$file" ] || continue
+            name="$(basename "$file")"
+            grep -qxF "$name" category || echo "$name" >> category
+          done
+
+      - name: Debug resulting files
+        shell: bash
+        run: |
+          echo "=== generated-custom ==="
+          ls -lah generated-custom || true
+          echo
+          echo "=== data mahavpn ==="
+          ls -lah data | grep 'mahavpn\|ads-customku' || true
+          echo
+          echo "=== sample ads-customku ==="
+          sed -n '1,15p' data/ads-customku || true
+          echo
+          echo "=== sample mahavpn-small-block ==="
+          sed -n '1,10p' data/mahavpn-small-block || true
+
+      - name: Debug broken include references
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          data_dir = Path("data")
+          existing = {p.name.lower() for p in data_dir.iterdir() if p.is_file()}
+
+          broken = []
+          for path in sorted(data_dir.iterdir()):
+              if not path.is_file():
+                  continue
+              for i, line in enumerate(path.read_text(encoding="utf-8", errors="ignore").splitlines(), 1):
+                  s = line.strip()
+                  if s.lower().startswith("include:"):
+                      target = s.split(":", 1)[1].strip().lower()
+                      if target and target not in existing:
+                         broken.append((path.name, i, target))
+
+          if broken:
+              print("=== broken include references ===")
+              for fname, lineno, target in broken:
+                  print(f"{fname}:{lineno} -> include:{target} (missing)")
+          else:
+              print("No broken include references found.")
+          PY
+
+      - name: Remove broken include references from custom files
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          data_dir = Path("data")
+          custom_sources = [Path("my-custom"), Path("generated-custom")]
+
+          existing = {p.name.lower() for p in data_dir.iterdir() if p.is_file()}
+
+          changed = False
+
+          for src in custom_sources:
+              if not src.exists():
+                  continue
+
+              for path in sorted(src.iterdir()):
+                  if not path.is_file():
+                      continue
+
+                  lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+                  new_lines = []
+                  removed = []
+
+                  for i, line in enumerate(lines, 1):
+                      s = line.strip()
+                      if s.lower().startswith("include:"):
+                          target = s.split(":", 1)[1].strip().lower()
+                          if target and target not in existing:
+                              removed.append((i, target, line))
+                              changed = True
+                              continue
+                      new_lines.append(line)
+
+                  if removed:
+                      print(f"[FIX] {path}")
+                      for i, target, line in removed:
+                          print(f"  remove line {i}: {line}  -> missing target '{target}'")
+                      path.write_text("\n".join(new_lines) + ("\n" if new_lines else ""), encoding="utf-8")
+
+                      # sinkronkan juga ke data
+                      target_path = data_dir / path.name
+                      target_path.write_text("\n".join(new_lines) + ("\n" if new_lines else ""), encoding="utf-8")
+          PY
+    
+      - name: Deduplicate custom list lines
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          targets = ["my-custom", "generated-custom", "data"]
+          exact_remove = {"bit.ly", "localhost"}
+          filter_only_for = {
+              "ads-customku",
+              "mahavpn-d3ward",
+              "mahavpn-small-block",
+              "mahavpn-adaway",
+          }
+
+          total_duplicates_removed = 0
+          total_exact_removed = 0
+          processed_files = 0
+
+          for folder in targets:
+              p = Path(folder)
+              if not p.exists():
+                  continue
+
+              print(f"== Folder: {folder} ==")
+
+              for file in sorted(p.iterdir()):
+                  if not file.is_file():
+                      continue
+
+                  processed_files += 1
+                  seen = set()
+                  output = []
+
+                  duplicates_removed = 0
+                  exact_removed = 0
+
+                  lines = file.read_text(encoding="utf-8", errors="ignore").splitlines()
+
+                  for line in lines:
+                      stripped = line.strip()
+
+                      if file.name in filter_only_for and stripped in exact_remove:
+                          exact_removed += 1
+                          continue
+
+                      if line in seen:
+                          duplicates_removed += 1
+                          continue
+
+                      seen.add(line)
+                      output.append(line)
+
+                  file.write_text("\n".join(output) + ("\n" if output else ""), encoding="utf-8")
+
+                  total_duplicates_removed += duplicates_removed
+                  total_exact_removed += exact_removed
+
+                  if duplicates_removed or exact_removed:
+                      print(
+                          f"{file}: "
+                          f"duplicate_removed={duplicates_removed}, "
+                          f"exact_removed={exact_removed}, "
+                          f"final_lines={len(output)}"
+                      )
+
+              print()
+
+          print("== Dedup summary ==")
+          print(f"processed_files={processed_files}")
+          print(f"total_duplicates_removed={total_duplicates_removed}")
+          print(f"total_exact_removed={total_exact_removed}")
+          PY
+    
+      - name: Preview suspicious wildcard lines
+        shell: bash
+        run: |
+          echo "=== wildcard lines in my-custom ==="
+          grep -RIn '^\*\.' my-custom || true
+
+          echo "=== wildcard lines in data ==="
+          grep -RIn '^\*\.' data || true
+    
+      - name: Build geosite.dat
+        run: |
+          ./dlc -datapath ./data -outputdir ./release -outputname geosite.dat
+
+      - name: Show built file size
+        run: |
+          ls -lh release/geosite.dat
+          sha256sum release/geosite.dat
+
+      - name: Publish generated files to lite-version branch
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          MAIN_REPO="$GITHUB_WORKSPACE"
+          PUBLISH_DIR="/tmp/lite-publish"
+          BRANCH_DIR="/tmp/lite-version-branch"
+          TARGET_BRANCH="lite-version"
+
+          rm -rf "$PUBLISH_DIR" "$BRANCH_DIR"
+          mkdir -p "$PUBLISH_DIR"
+
+          cp -r "$MAIN_REPO/data" "$PUBLISH_DIR/"
+          cp -r "$MAIN_REPO/generated-custom" "$PUBLISH_DIR/"
+          cp -r "$MAIN_REPO/release" "$PUBLISH_DIR/"
+          cp "$MAIN_REPO/category" "$PUBLISH_DIR/category"
+
+          git -C "$MAIN_REPO" fetch origin "$TARGET_BRANCH"
+
+          git -C "$MAIN_REPO" worktree add "$BRANCH_DIR" "origin/$TARGET_BRANCH"
+
+          cd "$BRANCH_DIR"
+
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name '.git' \
+            -exec rm -rf {} +
+
+          cp -r "$PUBLISH_DIR/data" .
+          cp -r "$PUBLISH_DIR/generated-custom" .
+          cp -r "$PUBLISH_DIR/release" .
+          cp "$PUBLISH_DIR/category" .
+
+          cat > README.md <<'EOF'
+          # Lite generated output
+
+          Branch ini berisi hasil generate workflow lite.
+          Jangan edit manual di branch ini.
+          EOF
+
+          git add data generated-custom release category README.md
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit on lite-version branch."
+          else
+            git commit -m "chore: update lite generated domain lists"
+            git push origin HEAD:lite-version
+          fi
+
+          cd "$MAIN_REPO"
+          git worktree remove "$BRANCH_DIR" --force
+
+      - name: Publish geosite.dat to external repo
+        shell: bash
+        env:
+          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          TARGET_REPO="https://x-access-token:${TARGET_REPO_TOKEN}@github.com/GboyGud/geosite-geoip-publish.git"
+          TARGET_DIR="/tmp/geosite-external"
+
+          rm -rf "$TARGET_DIR"
+          git clone "$TARGET_REPO" "$TARGET_DIR"
+
+          cp release/geosite.dat "$TARGET_DIR/geosite.dat"
+
+          cd "$TARGET_DIR"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add geosite.dat
+
+          if git diff --cached --quiet; then
+            echo "No changes to publish to external repo."
+          else
+            git commit -m "update geosite.dat"
+            git push origin HEAD
+          fi
+          
+      - name: Upload geosite artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: geosite-dat
+          path: |
+            release/geosite.dat
+            generated-custom/
+            category
