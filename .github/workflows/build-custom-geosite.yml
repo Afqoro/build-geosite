@@ -485,7 +485,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          TARGET_REPO="https://x-access-token:${FULL_RELEASE_REPO_TOKEN}@github.com/Afqoro/geosite-full-release.git"
+          TARGET_REPO="https://x-access-token:${FULL_RELEASE_REPO_TOKEN}@github.com/Afqoro/geo-full-release.git"
           TARGET_DIR="/tmp/geosite-external"
 
           rm -rf "$TARGET_DIR"
