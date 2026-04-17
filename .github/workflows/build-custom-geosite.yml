@@ -481,11 +481,11 @@ jobs:
       - name: Publish geosite.dat to external repo
         shell: bash
         env:
-          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+          FULL_RELEASE_REPO_TOKEN: ${{ secrets.FULL_RELEASE_REPO_TOKEN }}
         run: |
           set -euo pipefail
 
-          TARGET_REPO="https://x-access-token:${TARGET_REPO_TOKEN}@github.com/GboyGud/geosite-geoip-publish.git"
+          TARGET_REPO="https://x-access-token:${FULL_RELEASE_REPO_TOKEN}@github.com/Afqoro/geosite-full-release.git"
           TARGET_DIR="/tmp/geosite-external"
 
           rm -rf "$TARGET_DIR"
