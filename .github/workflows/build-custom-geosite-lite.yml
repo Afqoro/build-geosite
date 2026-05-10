@@ -47,6 +47,8 @@ jobs:
           python <<'PY'
           import re
           import requests
+          import ipaddress
+          from urllib.parse import urlparse
           from pathlib import Path
 
           ROOT = Path(".")
@@ -129,6 +131,37 @@ jobs:
                       out.append(domain)
               return out
 
+          def parse_tracker_domains(text):
+              out = []
+              for line in text.splitlines():
+                  line = line.strip()
+                  if not line or line.startswith("#"):
+                      continue
+
+                  parsed = urlparse(line)
+                  host = parsed.hostname
+                  if not host:
+                      continue
+
+                  host = host.lower().strip(".")
+
+                  # Skip IP tracker agar geosite tetap domain-only
+                  try:
+                      ipaddress.ip_address(host)
+                      continue
+                  except ValueError:
+                      pass
+
+                  # Skip host tidak valid
+                  if not re.fullmatch(r"[a-z0-9.-]+", host):
+                      continue
+                  if host.startswith(".") or host.endswith(".") or ".." in host:
+                      continue
+
+                  out.append(host)
+
+              return out
+
           sources = [
               ("mahavpn-small-block", "https://small.oisd.nl/dnsmasq", parse_dnsmasq_server),
               ("mahavpn-d3ward", "https://raw.githubusercontent.com/d3ward/toolz/master/src/d3host.txt", parse_d3ward_hosts),
@@ -138,6 +171,19 @@ jobs:
               ("mahavpn-adaway", "https://adaway.org/hosts.txt", parse_hosts_second_column),
               ("mahavpn-whatsapp-new", "https://blocklistproject.github.io/Lists/alt-version/whatsapp-nl.txt", parse_plain_first_column),
           ]
+
+          torrent_sources = [
+              "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt",
+              "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt",
+              "https://cf.trackerslist.com/best.txt",
+              "https://cf.trackerslist.com/all.txt",
+          ]
+
+          torrent_domains = []
+          for url in torrent_sources:
+              torrent_domains += parse_tracker_domains(fetch_text(url))
+
+          write_lines(OUT / "mahavpn-torrent", torrent_domains)
 
           for filename, url, parser in sources:
               print(f"[FETCH] {filename} <- {url}")
@@ -281,6 +327,10 @@ jobs:
           echo
           echo "=== sample mahavpn-small-block ==="
           sed -n '1,10p' data/mahavpn-small-block || true
+          echo "=== sample mahavpn-torrent ==="
+          sed -n '1,20p' data/mahavpn-torrent || true
+          echo "=== count mahavpn-torrent ==="
+          wc -l data/mahavpn-torrent || true          
 
       - name: Debug broken include references
         shell: bash
