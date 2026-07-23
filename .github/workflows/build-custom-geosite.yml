@@ -514,3 +514,4 @@ jobs:
             release/geosite.dat
             generated-custom/
             category
+          retention-days: 2

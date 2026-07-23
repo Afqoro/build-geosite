@@ -38,3 +38,4 @@ jobs:
         with:
           name: TEST-${{ github.run_number }}-dlc.dat
           path: TEST-${{ github.run_number }}-dlc.dat
+          retention-days: 2
